@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using MHWLibrary.Models;
 using MHWLibrary.Models.Interfaces;
+using MHWLibraryNet.Enums;
 using MHWLibraryNet.Models;
 
 namespace MHWToolNetConsole
@@ -13,10 +15,25 @@ namespace MHWToolNetConsole
     {
         static void Main(string[] args)
         {
-            Test();
+            var armorSets = GetArmorSetList();
+            var armors = armorSets.SelectMany(
+                armorSet => armorSet.Armors,
+                (armorSet, armor) => new
+                {
+                    ArmorSetName = armorSet.Name,
+                    armor.Name,
+                    armor.Resistance,
+                    armor.Piece
+                });
+
+            var query2 =
+                (from armor in armors
+                where armor.Resistance.Fire == 2
+                      && armor.Piece == ArmorPiece.Helm
+                select armor).ToList();
         }
 
-        private static void Test()
+        private static List<IArmorSet> GetArmorSetList()
         {
             ArmorSet armorSet1 = new ArmorSet
             {
@@ -47,6 +64,12 @@ namespace MHWToolNetConsole
                 Name = "Test Set 2",
                 Armors = GetArmorPieces("Armor Two"),
             };
+
+            return new List<IArmorSet>
+            {
+                armorSet1,
+                armorSet2
+            };
         }
 
         private static List<IArmor> GetArmorPieces(string armorName)
@@ -61,7 +84,10 @@ namespace MHWToolNetConsole
                             new DecorationSlot { Level = 1 },
                             new DecorationSlot { Level = 1 }
                         },
-                        Resistance = new Resistance(),
+                        Resistance = new Resistance
+                        {
+                            Fire = 2
+                        },
                         Skills = new List<ISkill>
                         {
                             new Skill

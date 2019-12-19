@@ -7,7 +7,7 @@
     <ProjectGuid>{0C9D4E2D-68D0-4306-9EC4-B6CD543FAE2C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MHWLibraryNet</RootNamespace>
+    <RootNamespace>MHWLibrary</RootNamespace>
     <AssemblyName>MHWLibraryNet</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -51,25 +51,26 @@
     <Compile Include="Models\Carving.cs" />
     <Compile Include="Models\DecorationSlot.cs" />
     <Compile Include="Models\Chest.cs" />
-    <Compile Include="Models\Interfaces\ICarving.cs" />
-    <Compile Include="Models\Interfaces\IMonster.cs" />
-    <Compile Include="Models\Interfaces\IMonsterBase.cs" />
-    <Compile Include="Models\Interfaces\IMonsterSize.cs" />
+    <Compile Include="Models\ICarving.cs" />
+    <Compile Include="Models\IMonster.cs" />
+    <Compile Include="Models\IMonsterBase.cs" />
+    <Compile Include="Models\IMonsterSize.cs" />
     <Compile Include="Models\Material.cs" />
+    <Compile Include="Models\MonsterBase.cs" />
     <Compile Include="Models\SkillLevel.cs" />
     <Compile Include="Models\Waist.cs" />
     <Compile Include="Models\Leg.cs" />
     <Compile Include="Models\Arm.cs" />
-    <Compile Include="Models\Helm.cs" />
-    <Compile Include="Models\Interfaces\IArmor.cs" />
-    <Compile Include="Models\Interfaces\IArmorSet.cs" />
-    <Compile Include="Models\Interfaces\IArmorSetBonusSkill.cs" />
-    <Compile Include="Models\Interfaces\IDecoration.cs" />
-    <Compile Include="Models\Interfaces\IMaterial.cs" />
-    <Compile Include="Models\Interfaces\IRank.cs" />
-    <Compile Include="Models\Interfaces\IResistance.cs" />
-    <Compile Include="Models\Interfaces\ISkill.cs" />
-    <Compile Include="Models\Interfaces\ISkillLevel.cs" />
+    <Compile Include="Models\Head.cs" />
+    <Compile Include="Models\IArmor.cs" />
+    <Compile Include="Models\IArmorSet.cs" />
+    <Compile Include="Models\IArmorSetBonusSkill.cs" />
+    <Compile Include="Models\IDecoration.cs" />
+    <Compile Include="Models\IMaterial.cs" />
+    <Compile Include="Models\IRank.cs" />
+    <Compile Include="Models\IResistance.cs" />
+    <Compile Include="Models\ISkill.cs" />
+    <Compile Include="Models\ISkillLevel.cs" />
     <Compile Include="Models\Monster.cs" />
     <Compile Include="Models\Rank.cs" />
     <Compile Include="Models\Resistance.cs" />
@@ -78,5 +79,6 @@
     <Compile Include="Enums\ArmorPiece.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

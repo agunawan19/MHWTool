@@ -4,11 +4,12 @@ using System.Text;
 
 namespace MHWLibrary.Models
 {
-    public class Carving
+    public class Carving : ICarving
     {
-        public uint Id { get; set; }
+        public ushort Id { get; set; }
         public string Name { get; set; }
         public byte Rarity { get; set; }
-        public Rank Rank { get; set; }
+        public Enums.Rank Rank { get; set; }
+        public IMonsterBase Monster { get; set; }
     }
 }

@@ -5,8 +5,8 @@ using MHWLibrary.Enums;
 
 namespace MHWLibrary.Models
 {
-    public class Arm : ArmorBase
+    public class Head : ArmorBase
     {
-        public override ArmorPiece Piece => ArmorPiece.Arms;
+        public override ArmorPiece Piece => ArmorPiece.Helm;
     }
 }

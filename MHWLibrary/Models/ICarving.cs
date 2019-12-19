@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace MHWLibrary.Models
 {
-    public class Material : IMaterial
+    public interface ICarving : IMaterial
     {
-        public ushort Id { get; set; }
-        public string Name { get; set; }
-        public byte Rarity { get; set; }
+        Enums.Rank Rank { get; set; }
+        IMonsterBase Monster { get; set; }
     }
 }

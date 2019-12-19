@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using MHWLibrary.Models.Interfaces;
 using MHWLibrary.Models;
 
 namespace MHWToolConsole
@@ -30,7 +29,7 @@ namespace MHWToolConsole
                 ArmorSetBonusSkill = null,
                 Armors = new List<IArmor>
                 {
-                    new Helm
+                    new Head
                     {
                         Defense = 10
                     }

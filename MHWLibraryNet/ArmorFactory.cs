@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MHWLibrary.Models;
-using MHWLibrary.Models.Interfaces;
-using MHWLibraryNet.Enums;
+using MHWLibrary.Enums;
 
-namespace MHWLibraryNet
+namespace MHWLibrary
 {
     public class ArmorFactory
     {
@@ -25,7 +24,7 @@ namespace MHWLibraryNet
             switch (armorPiece)
             {
                 case ArmorPiece.Helm:
-                    armor = new Helm { Name = name };
+                    armor = new Head { Name = name };
                     break;
                 case ArmorPiece.Chest:
                     armor = new Chest { Name = name };

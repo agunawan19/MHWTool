@@ -4,12 +4,10 @@ using System.Linq;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
+using MHWLibrary;
+using MHWLibrary.Enums;
 using MHWLibrary.Models;
-using MHWLibrary.Models.Interfaces;
-using MHWLibraryNet;
-using MHWLibraryNet.Enums;
-using MHWLibraryNet.Models;
-using Rank = MHWLibraryNet.Enums.Rank;
+using Rank = MHWLibrary.Enums.Rank;
 
 namespace MHWToolNetConsole
 {
@@ -102,7 +100,7 @@ namespace MHWToolNetConsole
         {
             List<IArmor> armorPieces = new List<IArmor>
                 {
-                    new Helm
+                    new Head
                     {
                         Name = $"{armorName} Helm",
                         DecorationSlots = new List<DecorationSlot>
@@ -136,17 +134,32 @@ namespace MHWToolNetConsole
                             new Carving
                             {
                                 Name = "Carving Name",
-                                Rank = Rank.Master
+                                Rank = Rank.Master,
+                                Monster = new MonsterBase
+                                {
+                                    Name = "Barroth",
+                                }
                             },
                             new Material
                             {
-                                Name = "Material Name"
+                                Name = "IMaterial Name"
                             }
                         }
                     },
                     new Chest
                     {
                         Name = $"{armorName} Chest",
+                        Materials = new List<IMaterial> {
+                            new Carving
+                            {
+                                Name = "Carving Name",
+                                Rank = Rank.Master,
+                                Monster = new Monster
+                                {
+                                    Name = "Barroth"
+                                }
+                            }
+                        }
                     },
                     new Arm
                     {

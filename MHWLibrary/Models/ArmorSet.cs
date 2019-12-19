@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace MHWLibrary.Models.Interfaces
+namespace MHWLibrary.Models
 {
     public class ArmorSet : IArmorSet
     {
         public ushort Id { get; set; }
-        public string Name { get; set; }
-        public IArmorSetBonusSkill ArmorSetBonusSkill { get; set; }
+        public string Name { get; set; } = string.Empty;
+        public IArmorSetBonusSkill ArmorSetBonusSkill { get; set; } = new ArmorSetBonusSkill();
         public IEnumerable<IArmor> Armors { get; set; } = new List<IArmor>();
     }
 }

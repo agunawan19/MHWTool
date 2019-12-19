@@ -4,8 +4,8 @@ using System.Text;
 
 namespace MHWLibrary.Models
 {
-    public class MonsterSize : IMonsterSize
+    public interface IDecoration
     {
-        public MonsterSize Size { get; set; }
+        byte Level { get; set; }
     }
 }

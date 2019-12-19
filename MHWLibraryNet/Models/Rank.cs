@@ -7,7 +7,8 @@ namespace MHWLibrary.Models
 {
     public class Rank : IRank
     {
-        public byte Id { get; set; }
-        public string Name { get; set; } = string.Empty;
+        public bool HasLowRank { get; set; }
+        public bool HasHighRank { get; set; }
+        public bool HasMasterRank { get; set; }
     }
 }

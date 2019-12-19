@@ -8,5 +8,6 @@ namespace MHWLibrary.Models.Interfaces
     {
         ushort Id { get; set; }
         string Name { get; set; }
+        byte Rarity { get; set; }
     }
 }

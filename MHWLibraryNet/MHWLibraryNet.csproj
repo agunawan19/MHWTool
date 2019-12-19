@@ -41,11 +41,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enums\Rank.cs" />
+    <Compile Include="Enums\MonsterSize.cs" />
+    <Compile Include="Enums\MaterialType.cs" />
+    <Compile Include="Models\ArmorBase.cs" />
+    <Compile Include="ArmorFactory.cs" />
     <Compile Include="Models\ArmorSet.cs" />
     <Compile Include="Models\ArmorSetBonusSkill.cs" />
     <Compile Include="Models\Carving.cs" />
     <Compile Include="Models\DecorationSlot.cs" />
     <Compile Include="Models\Chest.cs" />
+    <Compile Include="Models\Interfaces\ICarving.cs" />
+    <Compile Include="Models\Interfaces\IMonster.cs" />
+    <Compile Include="Models\Interfaces\IMonsterBase.cs" />
+    <Compile Include="Models\Interfaces\IMonsterSize.cs" />
+    <Compile Include="Models\Material.cs" />
     <Compile Include="Models\SkillLevel.cs" />
     <Compile Include="Models\Waist.cs" />
     <Compile Include="Models\Leg.cs" />
@@ -63,11 +73,10 @@
     <Compile Include="Models\Monster.cs" />
     <Compile Include="Models\Rank.cs" />
     <Compile Include="Models\Resistance.cs" />
-    <Compile Include="Models\Size.cs" />
+    <Compile Include="Models\MonsterSize.cs" />
     <Compile Include="Models\Skill.cs" />
     <Compile Include="Enums\ArmorPiece.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

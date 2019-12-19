@@ -5,12 +5,9 @@ using System.Text;
 
 namespace MHWLibraryNet.Enums
 {
-    public enum ArmorPiece
+    public enum MonsterSize
     {
-        Helm,
-        Chest,
-        Arms,
-        Waist,
-        Leg
+        Large,
+        Small
     }
 }

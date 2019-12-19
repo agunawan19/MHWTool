@@ -2,7 +2,8 @@
 {
     public interface IRank
     {
-        byte Id { get; set; }
-        string Name { get; set; }
+        bool HasLowRank { get; set; }
+        bool HasHighRank { get; set; }
+        bool HasMasterRank { get; set; }
     }
 }

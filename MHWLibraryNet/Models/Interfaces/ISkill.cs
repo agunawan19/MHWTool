@@ -9,6 +9,6 @@ namespace MHWLibrary.Models.Interfaces
         ushort Id { get; set; }
         string Name { get; set; }
         byte MaximumLevel { get; set; }
-        IList<ISkillLevel> SkillLevels { get; set; }
+        IEnumerable<ISkillLevel> SkillLevels { get; set; }
     }
 }

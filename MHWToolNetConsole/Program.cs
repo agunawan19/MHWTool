@@ -6,8 +6,10 @@ using System.Text;
 using System.Threading.Tasks;
 using MHWLibrary.Models;
 using MHWLibrary.Models.Interfaces;
+using MHWLibraryNet;
 using MHWLibraryNet.Enums;
 using MHWLibraryNet.Models;
+using Rank = MHWLibraryNet.Enums.Rank;
 
 namespace MHWToolNetConsole
 {
@@ -20,10 +22,11 @@ namespace MHWToolNetConsole
                 armorSet => armorSet.Armors,
                 (armorSet, armor) => new
                 {
-                    ArmorSetName = armorSet.Name,
+                    armor.Id,
                     armor.Name,
                     armor.Resistance,
-                    armor.Piece
+                    armor.Piece,
+                    ArmorSetName = armorSet.Name
                 });
 
             var query2 =
@@ -31,11 +34,18 @@ namespace MHWToolNetConsole
                 where armor.Resistance.Fire == 2
                       && armor.Piece == ArmorPiece.Helm
                 select armor).ToList();
+
+            armors
+                .Where(armor => armor.Name.Contains(" Arms")).ToList()
+                .ForEach(armor => Console.WriteLine(armor.Name));
         }
 
         private static List<IArmorSet> GetArmorSetList()
         {
-            ArmorSet armorSet1 = new ArmorSet
+            ArmorSet[] armorSets = new ArmorSet[3];
+            ArmorFactory armorFactory = ArmorFactory.Instance;
+
+            armorSets[0] = new ArmorSet
             {
                 Id = 1,
                 Name = "Test Set 1",
@@ -58,17 +68,33 @@ namespace MHWToolNetConsole
                 }
             };
 
-            ArmorSet armorSet2 = new ArmorSet
+            armorSets[1] = new ArmorSet
             {
                 Id = 2,
                 Name = "Test Set 2",
                 Armors = GetArmorPieces("Armor Two"),
             };
 
+            armorSets[2] = new ArmorSet
+            {
+                Id = 3,
+                Name = "Test Set 3",
+                Armors = armorFactory.Build(
+                    new List<(ArmorPiece Piece, string Name)>
+                    {
+                        (ArmorPiece.Helm, "Armor Three Helm"),
+                        (ArmorPiece.Chest, "Armor Three Chest"),
+                        (ArmorPiece.Arms, "Armor Three Arms"),
+                        (ArmorPiece.Waist, "Armor Three Waist"),
+                        (ArmorPiece.Leg, "Armor Three Leg")
+                    }).ToList()
+            };
+
             return new List<IArmorSet>
             {
-                armorSet1,
-                armorSet2
+                armorSets[0],
+                armorSets[1],
+                armorSets[2]
             };
         }
 
@@ -104,6 +130,18 @@ namespace MHWToolNetConsole
                                     }
                                 }
                             }
+                        },
+                        Materials = new List<IMaterial>
+                        {
+                            new Carving
+                            {
+                                Name = "Carving Name",
+                                Rank = Rank.Master
+                            },
+                            new Material
+                            {
+                                Name = "Material Name"
+                            }
                         }
                     },
                     new Chest
@@ -112,7 +150,7 @@ namespace MHWToolNetConsole
                     },
                     new Arm
                     {
-                        Name = $"{armorName} Arm"
+                        Name = $"{armorName} Arms"
                     },
                     new Waist
                     {

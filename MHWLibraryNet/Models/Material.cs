@@ -1,17 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using MHWLibrary.Models.Interfaces;
-using MHWLibraryNet.Models.Interfaces;
 
-namespace MHWLibrary.Models
+namespace MHWLibraryNet.Models
 {
-    public class Carving : ICarving
+    public class Material : IMaterial
     {
         public ushort Id { get; set; }
         public string Name { get; set; }
         public byte Rarity { get; set; }
-        public MHWLibraryNet.Enums.Rank Rank { get; set; }
-        public IMonster Monster { get; set; }
     }
 }

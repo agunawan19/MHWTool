@@ -5,12 +5,11 @@ using System.Text;
 
 namespace MHWLibraryNet.Enums
 {
-    public enum ArmorPiece
+    public enum MaterialType
     {
-        Helm,
-        Chest,
-        Arms,
-        Waist,
-        Leg
+        Carving,
+        Mining,
+        Gathering,
+        Reward
     }
 }

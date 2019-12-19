@@ -5,12 +5,10 @@ using System.Text;
 
 namespace MHWLibraryNet.Enums
 {
-    public enum ArmorPiece
+    public enum Rank
     {
-        Helm,
-        Chest,
-        Arms,
-        Waist,
-        Leg
+        Low,
+        High,
+        Master
     }
 }

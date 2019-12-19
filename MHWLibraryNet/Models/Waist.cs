@@ -3,16 +3,12 @@ using System.Collections.Generic;
 using System.Text;
 using MHWLibrary.Models.Interfaces;
 using MHWLibraryNet.Enums;
+using MHWLibraryNet.Models;
 
 namespace MHWLibrary.Models
 {
-    public class Waist : IArmor
+    public class Waist : ArmorBase
     {
-        public ushort Defense { get; set; }
-        public string Name { get; set; }
-        public ArmorPiece Piece { get; set; } = ArmorPiece.Waist;
-        public IEnumerable<IDecoration> DecorationSlots { get; set; } = new List<IDecoration>();
-        public IResistance Resistance { get; set; } = new Resistance();
-        public IEnumerable<ISkill> Skills { get; set; } = new List<ISkill>();
+        public override ArmorPiece Piece => ArmorPiece.Waist;
     }
 }

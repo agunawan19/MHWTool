@@ -12,6 +12,6 @@ namespace MHWLibraryNet.Models
         public ushort Id { get; set; }
         public string Name { get; set; } = string.Empty;
         public byte MaximumLevel { get; set; } = 1;
-        public IList<ISkillLevel> SkillLevels { get; set; } = new List<ISkillLevel>();
+        public IEnumerable<ISkillLevel> SkillLevels { get; set; } = new List<ISkillLevel>();
     }
 }

@@ -7,6 +7,6 @@ namespace MHWLibrary.Models
         ushort Id { get; set; }
         string Name { get; set; }
         IMonsterSize Size { get; set; }
-        IEnumerable<IRank> Ranks { get; set; }
+        IEnumerable<IRankInfo> RankInfoCollection { get; set; }
     }
 }

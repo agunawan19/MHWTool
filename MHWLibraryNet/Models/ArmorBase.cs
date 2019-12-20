@@ -17,7 +17,7 @@ namespace MHWLibrary.Models
         public IEnumerable<IDecoration> DecorationSlots { get; set; } = new List<IDecoration>();
         public IResistance Resistance { get; set; } = new Resistance();
         public IEnumerable<ISkill> Skills { get; set; } = new List<ISkill>();
-        public ushort Rarity { get; set; }
+        public byte Rarity { get; set; }
         public IEnumerable<IMaterial> Materials { get; set; } = new List<IMaterial>();
     }
 }

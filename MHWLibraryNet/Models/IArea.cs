@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MHWLibrary.Enums;
 
 namespace MHWLibrary.Models
 {
-    public interface ICarving : IMaterial
+    interface IArea
     {
-        Rank Rank { get; set; }
-        IMonsterBase Monster { get; set; }
+        byte Id { get; set; }
+        string Name { get; set; }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace MHWLibrary.Models
 {
-    public interface IRank
+    public interface IRankInfo
     {
         bool HasLowRank { get; set; }
         bool HasHighRank { get; set; }

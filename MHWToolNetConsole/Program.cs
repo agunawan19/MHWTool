@@ -8,6 +8,7 @@ using MHWLibrary;
 using MHWLibrary.Enums;
 using MHWLibrary.Models;
 using Rank = MHWLibrary.Enums.Rank;
+using MHWEntity;
 
 namespace MHWToolNetConsole
 {
@@ -15,6 +16,10 @@ namespace MHWToolNetConsole
     {
         static void Main(string[] args)
         {
+            
+            Repository repository = new Repository();
+            var result = repository.GetDepartments();
+
             var armorSets = GetArmorSetList();
             var armors = armorSets.SelectMany(
                 armorSet => armorSet.Armors,

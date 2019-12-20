@@ -14,7 +14,7 @@ namespace MHWLibrary.Models
         IEnumerable<IDecoration> DecorationSlots { get; set; }
         IResistance Resistance { get; set; }
         IEnumerable<ISkill> Skills { get; set; }
-        ushort Rarity { get; set; }
+        byte Rarity { get; set; }
         IEnumerable<IMaterial> Materials { get; set; }
     }
 }

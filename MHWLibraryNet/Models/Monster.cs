@@ -10,7 +10,7 @@ namespace MHWLibrary.Models
         public ushort Id { get; set; }
         public string Name { get; set; }
         public IMonsterSize Size { get; set; }
-        public IEnumerable<IRank> Ranks { get; set; }
+        public IEnumerable<IRankInfo> RankInfoCollection { get; set; }
         public IEnumerable<ICarving> Carvings { get; set; } = new List<ICarving>();
     }
 }

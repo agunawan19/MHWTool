@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using MHWLibrary.Enums;
 
 namespace MHWLibrary.Models
 {
@@ -9,7 +10,7 @@ namespace MHWLibrary.Models
         public ushort Id { get; set; }
         public string Name { get; set; }
         public byte Rarity { get; set; }
-        public Enums.Rank Rank { get; set; }
+        public Rank Rank { get; set; }
         public IMonsterBase Monster { get; set; }
     }
 }

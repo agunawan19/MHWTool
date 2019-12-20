@@ -4,7 +4,7 @@ using System.Text;
 
 namespace MHWLibrary.Models
 {
-    public class Rank : IRank
+    public class RankInfo : IRankInfo
     {
         public bool HasLowRank { get; set; }
         public bool HasHighRank { get; set; }

@@ -5,9 +5,9 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using MHWLibrary;
-using MHWLibrary.Enums;
+using MHWLibrary.Enumerations;
 using MHWLibrary.Models;
-using Rank = MHWLibrary.Enums.Rank;
+using Rank = MHWLibrary.Enumerations.Rank;
 using MHWEntity;
 
 namespace MHWToolNetConsole
@@ -17,7 +17,7 @@ namespace MHWToolNetConsole
         static void Main(string[] args)
         {
             
-            Repository repository = new Repository();
+            EmployeeRepository repository = new EmployeeRepository();
             var result = repository.GetDepartments();
 
             var armorSets = GetArmorSetList();

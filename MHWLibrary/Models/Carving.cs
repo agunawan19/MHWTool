@@ -9,7 +9,7 @@ namespace MHWLibrary.Models
         public ushort Id { get; set; }
         public string Name { get; set; }
         public byte Rarity { get; set; }
-        public Enums.Rank Rank { get; set; }
+        public Enumerations.Rank Rank { get; set; }
         public IMonsterBase Monster { get; set; }
     }
 }

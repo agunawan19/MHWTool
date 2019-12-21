@@ -1,4 +1,4 @@
-﻿using MHWLibrary.Enums;
+﻿using MHWLibrary.Enumerations;
 
 namespace MHWLibrary.Models
 {

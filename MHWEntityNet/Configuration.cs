@@ -13,6 +13,7 @@ namespace MHWEntity
     {
         public Configuration()
         {
+            SetExecutionStrategy("System.Data.SqlClient", () => new DefaultExecutionStrategy());
             const string conn = "Server =.;Database=MHW;Trusted_Connection=True;";
             SetDefaultConnectionFactory(new SqlConnectionFactory(conn));
         }

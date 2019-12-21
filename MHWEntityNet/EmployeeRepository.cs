@@ -8,11 +8,13 @@ using MHWEntity.Models;
 
 namespace MHWEntity
 {
-    public class Repository
+    public class EmployeeRepository
     {
         public List<Department> GetDepartments()
         {
-            ApiContext context = new ApiContext();
+            const string connectionString =
+                "server=.;database=MHWDb;Trusted_Connection=True;multipleactiveresultsets=True;application name=EntityFramework";
+            MHWContext context = new MHWContext(connectionString);
             return context.Departments.ToList();
         }
     }

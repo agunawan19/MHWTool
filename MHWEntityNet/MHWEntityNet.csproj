@@ -51,19 +51,59 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApiContext.cs" />
-    <Compile Include="Configuration.cs" />
+    <Compile Include="Migrations\201912201900247_InitialCreate.cs" />
+    <Compile Include="Migrations\201912201900247_InitialCreate.designer.cs">
+      <DependentUpon>201912201900247_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912202108290_Migration1.cs" />
+    <Compile Include="Migrations\201912202108290_Migration1.designer.cs">
+      <DependentUpon>201912202108290_Migration1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912210200103_Migration2.cs" />
+    <Compile Include="Migrations\201912210200103_Migration2.designer.cs">
+      <DependentUpon>201912210200103_Migration2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912210202285_Migration3.cs" />
+    <Compile Include="Migrations\201912210202285_Migration3.designer.cs">
+      <DependentUpon>201912210202285_Migration3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="EntityConfigurations\EmployeeConfiguration.cs" />
+    <Compile Include="Enumerations\TeachingMode.cs" />
+    <Compile Include="EntityConfigurations\DepartmentConfiguration.cs" />
+    <Compile Include="Models\Class1.cs" />
+    <Compile Include="Models\Course.cs" />
+    <Compile Include="Models\Grade.cs" />
+    <Compile Include="MHWContext.cs" />
+    <Compile Include="Initializer\MHWDbInitializer.cs" />
     <Compile Include="Models\Department.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\EntityBase.cs" />
+    <Compile Include="Models\StudentAddress.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repository.cs" />
+    <Compile Include="EmployeeRepository.cs" />
+    <Compile Include="Models\Student.cs" />
+    <Compile Include="Models\Teacher.cs" />
+    <Compile Include="EntityConfigurations\StudentConfiguration.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201912201900247_InitialCreate.resx">
+      <DependentUpon>201912201900247_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912202108290_Migration1.resx">
+      <DependentUpon>201912202108290_Migration1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912210200103_Migration2.resx">
+      <DependentUpon>201912210200103_Migration2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912210202285_Migration3.resx">
+      <DependentUpon>201912210202285_Migration3.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

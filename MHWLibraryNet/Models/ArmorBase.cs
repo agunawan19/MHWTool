@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MHWLibrary.Models;
-using MHWLibrary.Enums;
+using MHWLibrary.Enumerations;
 
 namespace MHWLibrary.Models
 {

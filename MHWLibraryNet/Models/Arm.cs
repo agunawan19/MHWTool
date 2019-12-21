@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using MHWLibrary.Enums;
+using MHWLibrary.Enumerations;
 
 namespace MHWLibrary.Models
 {

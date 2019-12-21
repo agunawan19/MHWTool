@@ -41,9 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Enums\Rank.cs" />
-    <Compile Include="Enums\MonsterSize.cs" />
-    <Compile Include="Enums\MaterialType.cs" />
+    <Compile Include="Enumerations\Rank.cs" />
+    <Compile Include="Enumerations\MonsterSize.cs" />
+    <Compile Include="Enumerations\MaterialType.cs" />
     <Compile Include="Models\ArmorBase.cs" />
     <Compile Include="ArmorFactory.cs" />
     <Compile Include="Models\ArmorSet.cs" />
@@ -79,7 +79,7 @@
     <Compile Include="Models\Resistance.cs" />
     <Compile Include="Models\MonsterSize.cs" />
     <Compile Include="Models\Skill.cs" />
-    <Compile Include="Enums\ArmorPiece.cs" />
+    <Compile Include="Enumerations\ArmorPiece.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

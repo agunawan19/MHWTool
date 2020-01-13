@@ -40,9 +40,13 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="JetBrains.Annotations, Version=2019.1.3.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
+      <HintPath>..\packages\JetBrains.Annotations.2019.1.3\lib\net20\JetBrains.Annotations.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -51,57 +55,37 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Migrations\201912201900247_InitialCreate.cs" />
-    <Compile Include="Migrations\201912201900247_InitialCreate.designer.cs">
-      <DependentUpon>201912201900247_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201912202108290_Migration1.cs" />
-    <Compile Include="Migrations\201912202108290_Migration1.designer.cs">
-      <DependentUpon>201912202108290_Migration1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201912210200103_Migration2.cs" />
-    <Compile Include="Migrations\201912210200103_Migration2.designer.cs">
-      <DependentUpon>201912210200103_Migration2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201912210202285_Migration3.cs" />
-    <Compile Include="Migrations\201912210202285_Migration3.designer.cs">
-      <DependentUpon>201912210202285_Migration3.cs</DependentUpon>
+    <Compile Include="Conventions\DefaultValueConvention.cs" />
+    <Compile Include="EntityConfigurations\PersonConfiguration.cs" />
+    <Compile Include="MigrationCodeGenerator\ExtendedMigrationCodeGenerator.cs" />
+    <Compile Include="EntityConfigurations\MaterialTypeConfiguration.cs" />
+    <Compile Include="EntityConfigurations\HabitatConfiguration.cs" />
+    <Compile Include="EntityConfigurations\SkillLevelConfiguration.cs" />
+    <Compile Include="EntityConfigurations\SkillConfiguration.cs" />
+    <Compile Include="Migrations\202001130559530_Initial.cs" />
+    <Compile Include="Migrations\202001130559530_Initial.designer.cs">
+      <DependentUpon>202001130559530_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="EntityConfigurations\EmployeeConfiguration.cs" />
-    <Compile Include="Enumerations\TeachingMode.cs" />
-    <Compile Include="EntityConfigurations\DepartmentConfiguration.cs" />
-    <Compile Include="Models\Class1.cs" />
-    <Compile Include="Models\Course.cs" />
-    <Compile Include="Models\Grade.cs" />
     <Compile Include="MHWContext.cs" />
     <Compile Include="Initializer\MHWDbInitializer.cs" />
-    <Compile Include="Models\Department.cs" />
-    <Compile Include="Models\Employee.cs" />
-    <Compile Include="Models\EntityBase.cs" />
-    <Compile Include="Models\StudentAddress.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="EmployeeRepository.cs" />
-    <Compile Include="Models\Student.cs" />
-    <Compile Include="Models\Teacher.cs" />
-    <Compile Include="EntityConfigurations\StudentConfiguration.cs" />
+    <Compile Include="MHWRepository.cs" />
+    <Compile Include="EntityConfigurations\MaterialConfiguration.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201912201900247_InitialCreate.resx">
-      <DependentUpon>201912201900247_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201912202108290_Migration1.resx">
-      <DependentUpon>201912202108290_Migration1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201912210200103_Migration2.resx">
-      <DependentUpon>201912210200103_Migration2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201912210202285_Migration3.resx">
-      <DependentUpon>201912210202285_Migration3.cs</DependentUpon>
+    <ProjectReference Include="..\MHWLibraryNet\MHWLibraryNet.csproj">
+      <Project>{0c9d4e2d-68d0-4306-9ec4-b6cd543fae2c}</Project>
+      <Name>MHWLibraryNet</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202001130559530_Initial.resx">
+      <DependentUpon>202001130559530_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

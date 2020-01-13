@@ -7,6 +7,6 @@ namespace MHWLibrary.Models
 {
     public class Head : ArmorBase
     {
-        public override ArmorPiece Piece => ArmorPiece.Helm;
+        public override ArmorPiece Piece => ArmorPiece.Head;
     }
 }

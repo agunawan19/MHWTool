@@ -9,178 +9,210 @@ using MHWLibrary.Enumerations;
 using MHWLibrary.Models;
 using Rank = MHWLibrary.Enumerations.Rank;
 using MHWEntity;
+using Serilog;
 
 namespace MHWToolNetConsole
 {
-    class Program
+    internal static class Program
     {
-        static void Main(string[] args)
+        private static void Main()
         {
-            
-            EmployeeRepository repository = new EmployeeRepository();
-            var result = repository.GetDepartments();
+            Log.Logger = new LoggerConfiguration()
+                .MinimumLevel.Debug()
+                .WriteTo.Console()
+                .WriteTo.File(@"logs\myapp.txt", rollingInterval: RollingInterval.Day)
+                .CreateLogger();
 
-            var armorSets = GetArmorSetList();
-            var armors = armorSets.SelectMany(
-                armorSet => armorSet.Armors,
-                (armorSet, armor) => new
-                {
-                    armor.Id,
-                    armor.Name,
-                    armor.Resistance,
-                    armor.Piece,
-                    ArmorSetName = armorSet.Name
-                });
+            Log.Information("Hello, world!");
 
-            var query2 =
-                (from armor in armors
-                where armor.Resistance.Fire == 2
-                      && armor.Piece == ArmorPiece.Helm
-                select armor).ToList();
+            int a = 10, b = 0;
+            try
+            {
+                Log.Debug("Dividing {A} by {B}", a, b);
+                Console.WriteLine(a / b);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, "Something went wrong");
+            }
 
-            armors
-                .Where(armor => armor.Name.Contains(" Arms")).ToList()
-                .ForEach(armor => Console.WriteLine(armor.Name));
+            Log.CloseAndFlush();
+            Console.ReadKey();
+
+            var repository = new MHWRepository();
+
+            var singleResult2 = repository.GetPersons();
+            var singleResult1 = repository.GetMaterial(1);
+
+            var result = repository.GetMaterials();
+
+            var result2 = repository.GetSkills();
+
+            var result3 = repository.GetMaterialTypes();
+
+            Console.ReadLine();
+
+            //var armorSets = GetArmorSetList();
+            //var armors = armorSets.SelectMany(
+            //    armorSet => armorSet.Armors,
+            //    (armorSet, armor) => new
+            //    {
+            //        armor.Id,
+            //        armor.Name,
+            //        armor.Resistance,
+            //        armor.Piece,
+            //        ArmorSetName = armorSet.Name
+            //    });
+
+            //var query2 =
+            //    (from armor in armors
+            //     where armor.Resistance.Fire == 2
+            //           && armor.Piece == ArmorPiece.Helm
+            //     select armor).ToList();
+
+            //armors
+            //    .Where(armor => armor.Name.Contains(" Arms")).ToList()
+            //    .ForEach(armor => Console.WriteLine(armor.Name));
         }
 
-        private static List<IArmorSet> GetArmorSetList()
-        {
-            ArmorSet[] armorSets = new ArmorSet[3];
-            ArmorFactory armorFactory = ArmorFactory.Instance;
+        //private static List<IArmorSet> GetArmorSetList()
+        //{
+        //    var armorSets = new ArmorSet[3];
+        //    var armorFactory = ArmorFactory.Instance;
 
-            armorSets[0] = new ArmorSet
-            {
-                Id = 1,
-                Name = "Test Set 1",
-                Armors = GetArmorPieces("Armor One"),
-                ArmorSetBonusSkill = new ArmorSetBonusSkill
-                {
-                    Id = 1,
-                    Name = "Bonus Set",
-                    Description = "Bonus set desription",
-                    Skill = new Skill
-                    {
-                        SkillLevels = new List<ISkillLevel>
-                        {
-                            new SkillLevel
-                            {
-                                Description = "Skill Description 1"
-                            }
-                        }
-                    }
-                }
-            };
+        //    armorSets[0] = new ArmorSet
+        //    {
+        //        Id = 1,
+        //        Name = "Test Set 1",
+        //        Armors = GetArmorPieces("Armor One"),
+        //        ArmorSetBonusSkill = new ArmorSetBonusSkill
+        //        {
+        //            Id = 1,
+        //            Name = "Bonus Set",
+        //            Description = "Bonus set desription",
+        //            Skill = new Skill
+        //            {
+        //                SkillLevels = new List<SkillLevel>
+        //                {
+        //                    new SkillLevel
+        //                    {
+        //                        Description = "Skill Description 1"
+        //                    }
+        //                }
+        //            }
+        //        }
+        //    };
 
-            armorSets[1] = new ArmorSet
-            {
-                Id = 2,
-                Name = "Test Set 2",
-                Armors = GetArmorPieces("Armor Two"),
-            };
+        //    armorSets[1] = new ArmorSet
+        //    {
+        //        Id = 2,
+        //        Name = "Test Set 2",
+        //        Armors = GetArmorPieces("Armor Two"),
+        //    };
 
-            armorSets[2] = new ArmorSet
-            {
-                Id = 3,
-                Name = "Test Set 3",
-                Armors = armorFactory.Build(
-                    new List<(ArmorPiece Piece, string Name)>
-                    {
-                        (ArmorPiece.Helm, "Armor Three Helm"),
-                        (ArmorPiece.Chest, "Armor Three Chest"),
-                        (ArmorPiece.Arms, "Armor Three Arms"),
-                        (ArmorPiece.Waist, "Armor Three Waist"),
-                        (ArmorPiece.Leg, "Armor Three Leg")
-                    }).ToList()
-            };
+        //    armorSets[2] = new ArmorSet
+        //    {
+        //        Id = 3,
+        //        Name = "Test Set 3",
+        //        Armors = armorFactory.Build(
+        //            new List<(ArmorPiece Piece, string Name)>
+        //            {
+        //                (ArmorPiece.Helm, "Armor Three Helm"),
+        //                (ArmorPiece.Chest, "Armor Three Chest"),
+        //                (ArmorPiece.Arms, "Armor Three Arms"),
+        //                (ArmorPiece.Waist, "Armor Three Waist"),
+        //                (ArmorPiece.Leg, "Armor Three Leg")
+        //            }).ToList()
+        //    };
 
-            return new List<IArmorSet>
-            {
-                armorSets[0],
-                armorSets[1],
-                armorSets[2]
-            };
-        }
+        //    return new List<IArmorSet>
+        //    {
+        //        armorSets[0],
+        //        armorSets[1],
+        //        armorSets[2]
+        //    };
+        //}
 
-        private static List<IArmor> GetArmorPieces(string armorName)
-        {
-            List<IArmor> armorPieces = new List<IArmor>
-                {
-                    new Head
-                    {
-                        Name = $"{armorName} Helm",
-                        DecorationSlots = new List<DecorationSlot>
-                        {
-                            new DecorationSlot { Level = 1 },
-                            new DecorationSlot { Level = 1 }
-                        },
-                        Resistance = new Resistance
-                        {
-                            Fire = 2
-                        },
-                        Skills = new List<ISkill>
-                        {
-                            new Skill
-                            {
-                                Id = 1,
-                                Name = "Skill Name",
-                                MaximumLevel = 3,
-                                SkillLevels = new List<ISkillLevel>
-                                {
-                                    new SkillLevel
-                                    {
-                                        Level = 2,
-                                        Description = "Skill Description",
-                                    }
-                                }
-                            }
-                        },
-                        Materials = new List<IMaterial>
-                        {
-                            new Carving
-                            {
-                                Name = "Carving Name",
-                                Rank = Rank.Master,
-                                Monster = new MonsterBase
-                                {
-                                    Name = "Barroth",
-                                }
-                            },
-                            new Material
-                            {
-                                Name = "IMaterial Name"
-                            }
-                        }
-                    },
-                    new Chest
-                    {
-                        Name = $"{armorName} Chest",
-                        Materials = new List<IMaterial> {
-                            new Carving
-                            {
-                                Name = "Carving Name",
-                                Rank = Rank.Master,
-                                Monster = new Monster
-                                {
-                                    Name = "Barroth"
-                                }
-                            }
-                        }
-                    },
-                    new Arm
-                    {
-                        Name = $"{armorName} Arms"
-                    },
-                    new Waist
-                    {
-                        Name = $"{armorName} Waist"
-                    },
-                    new Leg
-                    {
-                        Name = $"{armorName} Leg"
-                    }
-                };
+        //private static List<IArmor> GetArmorPieces(string armorName)
+        //{
+        //    var armorPieces = new List<IArmor>
+        //    {
+        //        new Head
+        //        {
+        //            Name = $"{armorName} Helm",
+        //            DecorationSlots = new List<DecorationSlot>
+        //            {
+        //                new DecorationSlot { Level = 1 },
+        //                new DecorationSlot { Level = 1 }
+        //            },
+        //            Resistance = new Resistance
+        //            {
+        //                Fire = 2
+        //            },
+        //            Skills = new List<ISkill>
+        //            {
+        //                new Skill
+        //                {
+        //                    Id = 1,
+        //                    Name = "Skill Description",
+        //                    MaximumLevel = 3,
+        //                    SkillLevels = new List<SkillLevel>
+        //                    {
+        //                        new SkillLevel
+        //                        {
+        //                            Level = 2,
+        //                            Description = "Skill Description",
+        //                        }
+        //                    }
+        //                }
+        //            },
+        //            Materials = new List<IMaterial>
+        //            {
+        //                new Carving
+        //                {
+        //                    Name = "Carving Description",
+        //                    Rank = Rank.Master,
+        //                    Monster = new MonsterBase
+        //                    {
+        //                        Name = "Barroth",
+        //                    }
+        //                },
+        //                new Material
+        //                {
+        //                    Name = "IMaterial Description"
+        //                }
+        //            }
+        //        },
+        //        new Chest
+        //        {
+        //            Name = $"{armorName} Chest",
+        //            Materials = new List<IMaterial> {
+        //                new Carving
+        //                {
+        //                    Name = "Carving Description",
+        //                    Rank = Rank.Master,
+        //                    Monster = new Monster
+        //                    {
+        //                        Name = "Barroth"
+        //                    }
+        //                }
+        //            }
+        //        },
+        //        new Arm
+        //        {
+        //            Name = $"{armorName} Arms"
+        //        },
+        //        new Waist
+        //        {
+        //            Name = $"{armorName} Waist"
+        //        },
+        //        new Leg
+        //        {
+        //            Name = $"{armorName} Leg"
+        //        }
+        //    };
 
-            return armorPieces;
-        }
+        //    return armorPieces;
+        //}
     }
 }

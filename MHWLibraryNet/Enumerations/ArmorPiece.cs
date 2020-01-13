@@ -7,7 +7,7 @@ namespace MHWLibrary.Enumerations
 {
     public enum ArmorPiece
     {
-        Helm,
+        Head = 1,
         Chest,
         Arms,
         Waist,

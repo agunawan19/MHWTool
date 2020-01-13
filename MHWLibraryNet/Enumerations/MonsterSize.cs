@@ -7,7 +7,7 @@ namespace MHWLibrary.Enumerations
 {
     public enum MonsterSize
     {
-        Large,
-        Small
+        Small = 1,
+        Large
     }
 }

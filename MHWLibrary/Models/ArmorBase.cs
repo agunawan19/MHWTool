@@ -15,7 +15,7 @@ namespace MHWLibrary.Models
         public string Name { get; set; } = string.Empty;
         public abstract ArmorPiece Piece { get; }
         public IEnumerable<IDecoration> DecorationSlots { get; set; } = new List<IDecoration>();
-        public IResistance Resistance { get; set; } = new Resistance();
+        public IResistance Resistance { get; set; }
         public IEnumerable<ISkill> Skills { get; set; } = new List<ISkill>();
         public ushort Rarity { get; set; }
         public IEnumerable<IMaterial> Materials { get; set; } = new List<IMaterial>();

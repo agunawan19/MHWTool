@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace MHWEntity.EntityConfigurations
 {
-    class StudentConfiguration : EntityTypeConfiguration<Student>
+    internal sealed class StudentConfiguration : EntityTypeConfiguration<Student>
     {
-         public StudentConfiguration()
+        public StudentConfiguration()
         {
             Property(s => s.StudentName)
                 .IsRequired()

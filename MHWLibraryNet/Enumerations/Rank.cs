@@ -7,7 +7,7 @@ namespace MHWLibrary.Enumerations
 {
     public enum Rank
     {
-        Low,
+        Low = 1,
         High,
         Master
     }

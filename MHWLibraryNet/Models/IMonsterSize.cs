@@ -1,9 +1,8 @@
-﻿using MHWLibrary.Enumerations;
-
-namespace MHWLibrary.Models
+﻿namespace MHWLibrary.Models
 {
     public interface IMonsterSize
     {
-        MonsterSize Size { get; set; }
+        Enumerations.MonsterSize Size { get; set; }
+        string Name { get; set; }
     }
 }

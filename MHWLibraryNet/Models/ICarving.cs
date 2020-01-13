@@ -9,7 +9,7 @@ namespace MHWLibrary.Models
 {
     public interface ICarving : IMaterial
     {
-        Rank Rank { get; set; }
+        Enumerations.Rank Rank { get; set; }
         IMonsterBase Monster { get; set; }
     }
 }

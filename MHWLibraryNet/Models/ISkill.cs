@@ -7,9 +7,10 @@ namespace MHWLibrary.Models
 {
     public interface ISkill
     {
-        ushort Id { get; set; }
+        short Id { get; set; }
         string Name { get; set; }
         byte MaximumLevel { get; set; }
-        IEnumerable<ISkillLevel> SkillLevels { get; set; }
+
+        ICollection<SkillLevel> SkillLevels { get; set; }
     }
 }

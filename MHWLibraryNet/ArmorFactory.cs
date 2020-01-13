@@ -8,39 +8,39 @@ using MHWLibrary.Enumerations;
 
 namespace MHWLibrary
 {
-    public class ArmorFactory
+    public sealed class ArmorFactory
     {
         private static ArmorFactory _instance;
 
-        private ArmorFactory() { }
+        private ArmorFactory()
+        {
+        }
 
         public static ArmorFactory Instance =>
             _instance ?? (_instance = new ArmorFactory());
 
         public IArmor Build(ArmorPiece armorPiece, string name)
         {
-            IArmor armor = null;
-
             switch (armorPiece)
             {
-                case ArmorPiece.Helm:
-                    armor = new Head { Name = name };
-                    break;
-                case ArmorPiece.Chest:
-                    armor = new Chest { Name = name };
-                    break;
-                case ArmorPiece.Arms:
-                    armor = new Arm { Name = name };
-                    break;
-                case ArmorPiece.Waist:
-                    armor = new Waist { Name = name };
-                    break;
-                case ArmorPiece.Leg:
-                    armor = new Leg { Name = name };
-                    break;
-            }
+                case ArmorPiece.Head:
+                    return new Head { Name = name };
 
-            return armor;
+                case ArmorPiece.Chest:
+                    return new Chest { Name = name };
+
+                case ArmorPiece.Arms:
+                    return new Arm { Name = name };
+
+                case ArmorPiece.Waist:
+                    return new Waist { Name = name };
+
+                case ArmorPiece.Leg:
+                    return new Leg { Name = name };
+
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(armorPiece), armorPiece, null);
+            }
         }
 
         public IEnumerable<IArmor> Build(IEnumerable<(ArmorPiece Piece, string Name)> armorPieces) =>

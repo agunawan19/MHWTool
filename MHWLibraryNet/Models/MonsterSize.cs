@@ -6,6 +6,7 @@ namespace MHWLibrary.Models
 {
     public class MonsterSize : IMonsterSize
     {
-        public MonsterSize Size { get; set; }
+        public Enumerations.MonsterSize Size { get; set; }
+        public string Name { get; set; }
     }
 }

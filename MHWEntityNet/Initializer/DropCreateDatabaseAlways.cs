@@ -2,7 +2,7 @@
 
 namespace MhwDataAccess.Initializer
 {
-    public class MHWDbInitializer : DropCreateDatabaseIfModelChanges<MHWContext>
+    public class DropCreateDatabaseAlways : DropCreateDatabaseAlways<MHWContext>
     {
         protected override void Seed(MHWContext context)
         {

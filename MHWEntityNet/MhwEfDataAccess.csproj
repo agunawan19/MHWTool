@@ -68,7 +68,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MHWContext.cs" />
-    <Compile Include="Initializer\MHWDbInitializer.cs" />
+    <Compile Include="Initializer\DropCreateDatabaseAlways.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="MHWRepository.cs" />
     <Compile Include="EntityConfigurations\MaterialConfiguration.cs" />

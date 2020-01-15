@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MHWLibrary.Models
+namespace MhwLibrary.Models
 {
     public interface IEntityBase
     {

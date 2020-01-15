@@ -1,18 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Data.Entity;
+using System.Data.Entity.Migrations;
+using System.Linq;
 using System.Linq.Expressions;
-using System.Net.NetworkInformation;
-using MHWEntity.Initializer;
-using MHWEntity.MigrationCodeGenerator;
-using MHWLibrary.Enumerations;
-using MHWLibrary.Models;
+using MhwDataAccess.MigrationCodeGenerator;
+using MhwLibrary.Enumerations;
+using MhwLibrary.Models;
 
-namespace MHWEntity.Migrations
+namespace MhwDataAccess.Migrations
 {
-    using System;
-    using System.Data.Entity;
-    using System.Data.Entity.Migrations;
-    using System.Linq;
-
     internal sealed class Configuration : DbMigrationsConfiguration<MHWContext>
     {
         public Configuration()

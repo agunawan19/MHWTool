@@ -5,10 +5,10 @@ using System.Net.Http;
 using System.Text;
 using System.Web.Http;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MHWAPI;
-using MHWAPI.Controllers;
+using MhwApi;
+using MhwApi.Controllers;
 
-namespace MHWAPI.Tests.Controllers
+namespace MhwApi.Tests.Controllers
 {
     [TestClass]
     public class ValuesControllerTest

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using MHWLibrary.Enumerations;
+using MhwLibrary.Enumerations;
 
-namespace MHWLibrary.Models
+namespace MhwLibrary.Models
 {
     public class Arm : ArmorBase
     {

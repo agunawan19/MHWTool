@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using MHWLibrary.Enumerations;
+using MhwLibrary.Enumerations;
 
-namespace MHWLibrary.Models
+namespace MhwLibrary.Models
 {
     public class MaterialType : EntityBase, IMaterialType
     {

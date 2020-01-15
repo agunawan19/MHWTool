@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace MHWLibrary.Enumerations
+namespace MhwLibrary.Enumerations
 {
     public enum MonsterSize
     {

@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MhwDataAccess;
 using MHWEntity;
 
-namespace MHWRepository
+namespace MhwRepository
 {
     public sealed class UnitOfWork : IUnitOfWork
     {

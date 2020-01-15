@@ -11,10 +11,11 @@ using System.Net.Http.Headers;
 using System.Web.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.Description;
-using MHWAPI.Areas.HelpPage.ModelDescriptions;
-using MHWAPI.Areas.HelpPage.Models;
+using MhwApi.Areas.HelpPage.ModelDescriptions;
+using MhwApi.Areas.HelpPage.Models;
+using MhwApi.Areas.HelpPage.SampleGeneration;
 
-namespace MHWAPI.Areas.HelpPage
+namespace MhwApi.Areas.HelpPage
 {
     public static class HelpPageConfigurationExtensions
     {
@@ -282,7 +283,7 @@ namespace MHWAPI.Areas.HelpPage
                     //     public int Y { get; set; }
                     // }
                     // Class Point is bindable with a TypeConverter, so Point will be added to UriParameters collection.
-                    // 
+                    //
                     // public class Point
                     // {
                     //     public int X { get; set; }

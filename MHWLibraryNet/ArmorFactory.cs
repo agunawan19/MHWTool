@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MHWLibrary.Models;
-using MHWLibrary.Enumerations;
+using MhwLibrary.Enumerations;
+using MhwLibrary.Models;
 
-namespace MHWLibrary
+namespace MhwLibrary
 {
     public sealed class ArmorFactory
     {

@@ -109,9 +109,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\MHWAPI\MHWAPI.csproj">
+    <ProjectReference Include="..\..\MHWAPI\MhwApi.csproj">
       <Project>{9BA916AD-7B38-4F46-B0C3-28D6B28C1366}</Project>
-      <Name>MHWAPI</Name>
+      <Name>MhwApi</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

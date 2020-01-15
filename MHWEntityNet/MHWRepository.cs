@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using MHWLibrary.Models;
+using MhwLibrary.Models;
 
-namespace MHWEntity
+namespace MhwDataAccess
 {
     public class MHWRepository
     {

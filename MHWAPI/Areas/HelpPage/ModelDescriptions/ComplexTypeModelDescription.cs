@@ -1,6 +1,6 @@
 using System.Collections.ObjectModel;
 
-namespace MHWAPI.Areas.HelpPage.ModelDescriptions
+namespace MhwApi.Areas.HelpPage.ModelDescriptions
 {
     public class ComplexTypeModelDescription : ModelDescription
     {

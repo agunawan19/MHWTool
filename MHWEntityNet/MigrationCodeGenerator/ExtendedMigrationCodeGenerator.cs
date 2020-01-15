@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Data.Entity.Migrations.Design;
 using System.Data.Entity.Migrations.Model;
-using System.Runtime.InteropServices;
 using IndentedTextWriter = System.Data.Entity.Migrations.Utilities.IndentedTextWriter;
 
-namespace MHWEntity.MigrationCodeGenerator
+namespace MhwDataAccess.MigrationCodeGenerator
 {
     public class ExtendedMigrationCodeGenerator : CSharpMigrationCodeGenerator
     {

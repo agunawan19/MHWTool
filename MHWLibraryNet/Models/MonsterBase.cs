@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MHWLibrary.Models;
+using MhwLibrary.Models;
 
-namespace MHWLibrary.Models
+namespace MhwLibrary.Models
 {
     public class MonsterBase : IMonsterBase
     {

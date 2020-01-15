@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
-namespace MHWAPI.Areas.HelpPage.ModelDescriptions
+namespace MhwApi.Areas.HelpPage.ModelDescriptions
 {
     public class ParameterDescription
     {

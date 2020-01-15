@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace MHWLibrary.Models
+namespace MhwLibrary.Models
 {
     public class ArmorElementalResistance : IArmorElementalResistance
     {

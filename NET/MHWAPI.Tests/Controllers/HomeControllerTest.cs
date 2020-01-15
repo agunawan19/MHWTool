@@ -1,9 +1,9 @@
 ﻿using System.Web.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MHWAPI;
-using MHWAPI.Controllers;
+using MhwApi;
+using MhwApi.Controllers;
 
-namespace MHWAPI.Tests.Controllers
+namespace MhwApi.Tests.Controllers
 {
     [TestClass]
     public class HomeControllerTest

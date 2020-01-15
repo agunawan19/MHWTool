@@ -1,7 +1,8 @@
 using System.Web.Http;
 using System.Web.Mvc;
+using MhwApi.Areas.HelpPage.App_Start;
 
-namespace MHWAPI.Areas.HelpPage
+namespace MhwApi.Areas.HelpPage
 {
     public class HelpPageAreaRegistration : AreaRegistration
     {

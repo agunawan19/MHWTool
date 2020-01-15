@@ -2,9 +2,9 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Net.Http.Headers;
 using System.Web.Http.Description;
-using MHWAPI.Areas.HelpPage.ModelDescriptions;
+using MhwApi.Areas.HelpPage.ModelDescriptions;
 
-namespace MHWAPI.Areas.HelpPage.Models
+namespace MhwApi.Areas.HelpPage.Models
 {
     /// <summary>
     /// The model that represents an API displayed on the help page.

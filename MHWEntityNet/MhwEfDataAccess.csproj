@@ -8,8 +8,8 @@
     <ProjectGuid>{1629F8BA-2174-4AB1-A0FF-E93754D12FF2}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MHWEntity</RootNamespace>
-    <AssemblyName>MHWEntityNet</AssemblyName>
+    <RootNamespace>MhwDataAccess</RootNamespace>
+    <AssemblyName>MhwEfDataAccess</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -78,9 +78,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MHWLibraryNet\MHWLibraryNet.csproj">
+    <ProjectReference Include="..\MHWLibraryNet\MhwLibraryNet.csproj">
       <Project>{0c9d4e2d-68d0-4306-9ec4-b6cd543fae2c}</Project>
-      <Name>MHWLibraryNet</Name>
+      <Name>MhwLibraryNet</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

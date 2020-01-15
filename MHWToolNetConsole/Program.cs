@@ -4,14 +4,15 @@ using System.Linq;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
-using MHWLibrary;
-using MHWLibrary.Enumerations;
-using MHWLibrary.Models;
-using Rank = MHWLibrary.Enumerations.Rank;
+using MhwDataAccess;
+using MhwLibrary;
+using MhwLibrary.Enumerations;
+using MhwLibrary.Models;
+using Rank = MhwLibrary.Enumerations.Rank;
 using MHWEntity;
 using Serilog;
 
-namespace MHWToolNetConsole
+namespace MhwToolNetConsole
 {
     internal static class Program
     {

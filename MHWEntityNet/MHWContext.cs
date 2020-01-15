@@ -1,30 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Data.Entity;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
-using MHWEntity.EntityConfigurations;
-using MHWEntity.Initializer;
-using MHWEntity.Migrations;
-using MHWLibrary.Models;
+﻿using System.Data.Entity;
+using MhwDataAccess.Migrations;
+using MhwLibrary.Models;
 
-namespace MHWEntity
+namespace MhwDataAccess
 {
     //[DbConfigurationType(typeof(Configuration))]
-    public sealed class MHWContext : DbContext
+    public class MHWContext : DbContext
     {
-        public DbSet<Material> Materials { get; set; }
-        public DbSet<Skill> Skills { get; set; }
-        public DbSet<SkillLevel> SkillLevels { get; set; }
-        public DbSet<Person> Persons { get; set; }
+        public virtual DbSet<Material> Materials { get; set; }
+        public virtual DbSet<Skill> Skills { get; set; }
+        public virtual DbSet<SkillLevel> SkillLevels { get; set; }
+        public virtual DbSet<Person> Persons { get; set; }
 
         // DbContext with read-only set properties
-        public DbSet<Habitat> Habitats => Set<Habitat>();
+        public virtual DbSet<Habitat> Habitats => Set<Habitat>();
 
-        public DbSet<MaterialType> MaterialTypes => Set<MaterialType>();
+        public virtual DbSet<MaterialType> MaterialTypes => Set<MaterialType>();
 
         public MHWContext() : base("MHWDb")
         {

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using MHWLibrary.Models;
+using MhwLibrary.Models;
 
-namespace MHWLibrary.Models
+namespace MhwLibrary.Models
 {
     public class Monster : IMonster
     {

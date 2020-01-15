@@ -1,6 +1,6 @@
-﻿using MHWLibrary.Enumerations;
+﻿using MhwLibrary.Enumerations;
 
-namespace MHWLibrary.Models
+namespace MhwLibrary.Models
 {
     internal interface IMaterialType
     {

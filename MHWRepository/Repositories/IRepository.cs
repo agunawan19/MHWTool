@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 
-namespace MHWRepository.Repositories
+namespace MhwRepository.Repositories
 {
     public interface IRepository<TEntity> where TEntity : class
     {

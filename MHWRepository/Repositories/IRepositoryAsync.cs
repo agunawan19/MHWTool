@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
-namespace MHWRepository.Repositories
+namespace MhwRepository.Repositories
 {
     public interface IRepositoryAsync<TEntity> where TEntity : class
     {

@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Data.Entity;
 
-namespace MHWEntity.Initializer
+namespace MhwDataAccess.Initializer
 {
     public class MHWDbInitializer : DropCreateDatabaseIfModelChanges<MHWContext>
     {

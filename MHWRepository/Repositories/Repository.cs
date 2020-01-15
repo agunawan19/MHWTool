@@ -5,7 +5,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
-namespace MHWRepository.Repositories
+namespace MhwRepository.Repositories
 {
     public class Repository<TEntity> :
         IRepository<TEntity>, IRepositoryAsync<TEntity>

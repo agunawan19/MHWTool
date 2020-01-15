@@ -70,13 +70,13 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MHWEntityNet\MHWEntityNet.csproj">
+    <ProjectReference Include="..\MHWEntityNet\MhwEfDataAccess.csproj">
       <Project>{1629f8ba-2174-4ab1-a0ff-e93754d12ff2}</Project>
-      <Name>MHWEntityNet</Name>
+      <Name>MhwEfDataAccess</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MHWLibraryNet\MHWLibraryNet.csproj">
+    <ProjectReference Include="..\MHWLibraryNet\MhwLibraryNet.csproj">
       <Project>{0c9d4e2d-68d0-4306-9ec4-b6cd543fae2c}</Project>
-      <Name>MHWLibraryNet</Name>
+      <Name>MhwLibraryNet</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

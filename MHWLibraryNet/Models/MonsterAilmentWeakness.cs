@@ -1,4 +1,4 @@
-﻿namespace MHWLibrary.Models
+﻿namespace MhwLibrary.Models
 {
     internal class MonsterAilmentWeakness : IMonsterAilmentWeakness
     {

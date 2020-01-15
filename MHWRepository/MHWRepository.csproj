@@ -64,12 +64,11 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MHWEntityNet\MHWEntityNet.csproj">
+    <ProjectReference Include="..\MHWEntityNet\MhwEfDataAccess.csproj">
       <Project>{1629f8ba-2174-4ab1-a0ff-e93754d12ff2}</Project>
-      <Name>MHWEntityNet</Name>
+      <Name>MhwEfDataAccess</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

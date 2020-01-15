@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace MHWLibrary.Models
+namespace MhwLibrary.Models
 {
     public interface IArmorSet
     {

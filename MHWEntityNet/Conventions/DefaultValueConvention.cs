@@ -1,8 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity.ModelConfiguration.Conventions;
+using JetBrains.Annotations;
 
 namespace MhwDataAccess.Conventions
 {
+    [UsedImplicitly]
     internal class DefaultValueConvention : Convention
     {
         internal DefaultValueConvention()

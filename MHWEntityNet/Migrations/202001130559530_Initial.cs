@@ -1,4 +1,4 @@
-﻿namespace MHWEntity.Migrations
+﻿namespace MhwDataAccess.Migrations
 {
     using System;
     using System.Collections.Generic;

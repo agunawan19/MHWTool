@@ -5,20 +5,20 @@ using MhwLibrary.Models;
 
 namespace MhwDataAccess
 {
-    public class MHWRepository
+    public class MhwRepository
     {
         //public List<Department> GetDepartments()
         //{
         //    const string connectionString =
         //        "server=.;database=MHWDb;Trusted_Connection=True;MultipleActiveResultSets=True;application name=EntityFramework";
-        //    var context = new MHWContext(connectionString);
+        //    var context = new MhwContext(connectionString);
         //    return context.Departments.ToList();
         //}
         //private const string ConnectionString =
         //    @"server=(localdb)\MSSQLLocalDB;database=MHWDb;Trusted_Connection=True;MultipleActiveResultSets=True;application name=EntityFramework";
         private readonly string _connectionString;
 
-        public MHWRepository()
+        public MhwRepository()
         {
             _connectionString =
                 @"server=(localdb)\MSSQLLocalDB;database=MHWDb;Trusted_Connection=True;MultipleActiveResultSets=True;application name=EntityFramework";
@@ -26,7 +26,7 @@ namespace MhwDataAccess
 
         public ICollection<Material> GetMaterials()
         {
-            using (var context = new MHWContext(_connectionString))
+            using (var context = new MhwContext(_connectionString))
             {
                 return context.Materials.Include(e => e.Type).AsNoTracking().ToList();
             }
@@ -34,7 +34,7 @@ namespace MhwDataAccess
 
         public Material GetMaterial(short id)
         {
-            using (var context = new MHWContext(_connectionString))
+            using (var context = new MhwContext(_connectionString))
             {
                 var material = context.Materials.Find(id);
                 context.Entry(material).Reference(e => e.Type).Load();
@@ -45,7 +45,7 @@ namespace MhwDataAccess
 
         public ICollection<MaterialType> GetMaterialTypes()
         {
-            using (var context = new MHWContext(_connectionString))
+            using (var context = new MhwContext(_connectionString))
             {
                 return context.MaterialTypes.Include(e => e.Materials).AsNoTracking().ToList();
             }
@@ -53,7 +53,7 @@ namespace MhwDataAccess
 
         public ICollection<Skill> GetSkills()
         {
-            using (var context = new MHWContext(_connectionString))
+            using (var context = new MhwContext(_connectionString))
             {
                 return context.Skills.Include(e => e.SkillLevels).AsNoTracking().ToList();
             }
@@ -61,7 +61,7 @@ namespace MhwDataAccess
 
         public ICollection<Person> GetPersons()
         {
-            using (var context = new MHWContext(_connectionString))
+            using (var context = new MhwContext(_connectionString))
             {
                 return context.Persons.ToList();
             }

@@ -4,15 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MhwDataAccess;
-using MHWEntity;
+using MhwEfDataAccess.Migrations;
 
 namespace MhwRepository
 {
     public sealed class UnitOfWork : IUnitOfWork
     {
-        private readonly MHWContext _context;
+        private readonly MhwContext _context;
 
-        public UnitOfWork(MHWContext context) =>
+        public UnitOfWork(MhwContext context) =>
             _context = context;
 
         public int Commit() =>

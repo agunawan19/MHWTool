@@ -2,9 +2,9 @@
 
 namespace MhwDataAccess.Initializer
 {
-    public class DropCreateDatabaseAlways : DropCreateDatabaseAlways<MHWContext>
+    public class DropCreateDatabaseAlways : DropCreateDatabaseAlways<MhwContext>
     {
-        protected override void Seed(MHWContext context)
+        protected override void Seed(MhwContext context)
         {
             //IList<Grade> grades = new List<Grade>
             //{

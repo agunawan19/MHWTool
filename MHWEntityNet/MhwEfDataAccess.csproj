@@ -67,10 +67,10 @@
       <DependentUpon>202001130559530_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="MHWContext.cs" />
+    <Compile Include="MhwContext.cs" />
     <Compile Include="Initializer\DropCreateDatabaseAlways.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="MHWRepository.cs" />
+    <Compile Include="MhwRepository.cs" />
     <Compile Include="EntityConfigurations\MaterialConfiguration.cs" />
   </ItemGroup>
   <ItemGroup>

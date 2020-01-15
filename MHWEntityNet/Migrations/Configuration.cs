@@ -10,16 +10,16 @@ using MhwLibrary.Models;
 
 namespace MhwDataAccess.Migrations
 {
-    internal sealed class Configuration : DbMigrationsConfiguration<MHWContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<MhwContext>
     {
         public Configuration()
         {
             CodeGenerator = new ExtendedMigrationCodeGenerator();
             AutomaticMigrationsEnabled = false;
-            ContextKey = "MHWEntity.MHWContext";
+            ContextKey = "MHWEntity.MhwContext";
         }
 
-        protected override void Seed(MHWContext context)
+        protected override void Seed(MhwContext context)
         {
             //  This method will be called after migrating to the latest version.
 

@@ -9,7 +9,7 @@ using MhwLibrary;
 using MhwLibrary.Enumerations;
 using MhwLibrary.Models;
 using Rank = MhwLibrary.Enumerations.Rank;
-using MHWEntity;
+using MhwEfDataAccess.Migrations;
 using Serilog;
 
 namespace MhwToolNetConsole
@@ -40,7 +40,7 @@ namespace MhwToolNetConsole
             Log.CloseAndFlush();
             Console.ReadKey();
 
-            var repository = new MHWRepository();
+            var repository = new MhwRepository();
 
             var singleResult2 = repository.GetPersons();
             var singleResult1 = repository.GetMaterial(1);

@@ -5,7 +5,7 @@ using MhwLibrary.Models;
 namespace MhwDataAccess
 {
     //[DbConfigurationType(typeof(Configuration))]
-    public class MHWContext : DbContext
+    public class MhwContext : DbContext
     {
         public virtual DbSet<Material> Materials { get; set; }
         public virtual DbSet<Skill> Skills { get; set; }
@@ -17,16 +17,16 @@ namespace MhwDataAccess
 
         public virtual DbSet<MaterialType> MaterialTypes => Set<MaterialType>();
 
-        public MHWContext() : base("MHWDb")
+        public MhwContext() : base("MHWDb")
         {
-            //Database.SetInitializer(new MigrateDatabaseToLatestVersion<MHWContext, Configuration>());
+            //Database.SetInitializer(new MigrateDatabaseToLatestVersion<MhwContext, Configuration>());
             //Database.SetInitializer(new MHWDbInitializer());
         }
 
-        internal MHWContext(string connectionString) : base(connectionString)
+        internal MhwContext(string connectionString) : base(connectionString)
         {
             //Database.SetInitializer(new MHWDbInitializer());
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<MHWContext, Configuration>());
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<MhwContext, Configuration>());
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

@@ -78,9 +78,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MHWLibraryNet\MhwLibraryNet.csproj">
+    <ProjectReference Include="..\MHWLibraryNet\MhwLibrary.csproj">
       <Project>{0c9d4e2d-68d0-4306-9ec4-b6cd543fae2c}</Project>
-      <Name>MhwLibraryNet</Name>
+      <Name>MhwLibrary</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

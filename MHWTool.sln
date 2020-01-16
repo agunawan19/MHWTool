@@ -1,13 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29613.14
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.1000
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MHWLibrary", "MHWLibrary\MHWLibrary.csproj", "{05AE4177-1399-43C9-8DA8-77D5280D8A52}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MHWToolConsole", "MHWToolConsole\MHWToolConsole.csproj", "{90B690EF-EFE9-4632-9AEB-2CBF63408755}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MhwLibraryNet", "MHWLibraryNet\MhwLibraryNet.csproj", "{0C9D4E2D-68D0-4306-9EC4-B6CD543FAE2C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MhwLibrary", "MHWLibraryNet\MhwLibrary.csproj", "{0C9D4E2D-68D0-4306-9EC4-B6CD543FAE2C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MhwToolNetConsole", "MHWToolNetConsole\MhwToolNetConsole.csproj", "{BC6312D1-28F5-4CDA-B72F-5D13F5478D5B}"
 EndProject

@@ -1,5 +1,6 @@
 ﻿using System;
 using Mhw.DataAccess;
+using Mhw.Library.Enumerations;
 using Mhw.Library.Models;
 using Serilog;
 
@@ -211,7 +212,7 @@ namespace MHWToolNetConsole
 
         private static void Test()
         {
-            var employee = 
+            var employee =
                 Employee.CreateInstance()
                     .NameOfEmployee("First", "Last")
                     .WorkingOn("R & D")
@@ -219,6 +220,15 @@ namespace MHWToolNetConsole
                     .StaysAt("England");
 
             Console.WriteLine(employee);
+
+            var habitat1 = Habitat.CreateInstance()
+                .SetId(HabitatEnum.AncientForest)
+                .SetName("Habitat 1");
+            var habitat2 = Habitat.CreateInstance()
+                .SetId(HabitatEnum.AncientForest)
+                .SetName("Habitat 2");
+
+            Console.ReadLine();
         }
     }
 }

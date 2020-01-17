@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.1000
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29709.97
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Mhw.Net", "Mhw.Net", "{53AB78DF-0DB7-4A98-9F05-FF6D6E8A7324}"
 EndProject
@@ -16,6 +16,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mhw.ApiV1", "Net\Mhw.ApiV1\Mhw.ApiV1.csproj", "{9BA916AD-7B38-4F46-B0C3-28D6B28C1366}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mhw.ApiV1.Tests", "Net\Mhw.ApiV1.Tests\Mhw.ApiV1.Tests.csproj", "{6027B49A-E668-4782-9370-23711652740C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Mhw.NetCore", "Mhw.NetCore", "{8B701856-58F9-4130-9A87-EE57976DE973}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

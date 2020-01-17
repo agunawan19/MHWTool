@@ -2,7 +2,7 @@
 
 namespace Mhw.Library.Models
 {
-    public class Material : IMaterial
+    public class Material : EntityBase, IMaterial
     {
         public short Id { get; set; }
         public string Name { get; set; }

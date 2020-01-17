@@ -12,10 +12,16 @@ namespace Mhw.Library.Models
         public HabitatEnum Id { get; set; }
         public string Name { get; set; }
 
-        //public Habitat SetName(string name)
-        //{
-        //    Name = name;
-        //    return this;
-        //}
+        public Habitat SetId(HabitatEnum id)
+        {
+            Id = id;
+            return this;
+        }
+
+        public Habitat SetName(string name)
+        {
+            Name = name;
+            return this;
+        }
     }
 }

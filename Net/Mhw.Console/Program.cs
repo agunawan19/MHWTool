@@ -223,7 +223,8 @@ namespace MHWToolNetConsole
 
             var habitat1 = Habitat.CreateInstance()
                 .SetId(HabitatEnum.AncientForest)
-                .SetName("Habitat 1");
+                .SetName("Habitat 1")
+                .SetModifiedDate(DateTime.MinValue);
             var habitat2 = Habitat.CreateInstance()
                 .SetId(HabitatEnum.AncientForest)
                 .SetName("Habitat 2");

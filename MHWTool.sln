@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29709.97
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.1000
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Mhw.Net", "Mhw.Net", "{53AB78DF-0DB7-4A98-9F05-FF6D6E8A7324}"
 EndProject
@@ -17,7 +17,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mhw.ApiV1", "Net\Mhw.ApiV1\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mhw.ApiV1.Tests", "Net\Mhw.ApiV1.Tests\Mhw.ApiV1.Tests.csproj", "{6027B49A-E668-4782-9370-23711652740C}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Mhw.NetCore", "Mhw.NetCore", "{8B701856-58F9-4130-9A87-EE57976DE973}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoFactory.GangOfFour.Visitor.RealWorld", "Net\DoFactory.GangOfFour.Visitor.RealWorld\DoFactory.GangOfFour.Visitor.RealWorld.csproj", "{771E19C3-F53F-444C-93D2-973B34E19F22}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EarningTaxationWithVisitorPattern", "Net\EarningTaxationWithVisitorPattern\EarningTaxationWithVisitorPattern.csproj", "{B168AD21-F9C8-44FC-B2A5-9296116CC93E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,6 +51,14 @@ Global
 		{6027B49A-E668-4782-9370-23711652740C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6027B49A-E668-4782-9370-23711652740C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6027B49A-E668-4782-9370-23711652740C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{771E19C3-F53F-444C-93D2-973B34E19F22}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{771E19C3-F53F-444C-93D2-973B34E19F22}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{771E19C3-F53F-444C-93D2-973B34E19F22}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{771E19C3-F53F-444C-93D2-973B34E19F22}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B168AD21-F9C8-44FC-B2A5-9296116CC93E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B168AD21-F9C8-44FC-B2A5-9296116CC93E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B168AD21-F9C8-44FC-B2A5-9296116CC93E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B168AD21-F9C8-44FC-B2A5-9296116CC93E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -60,6 +70,8 @@ Global
 		{A38F7083-7928-4F07-8C14-50390AAA9B5D} = {53AB78DF-0DB7-4A98-9F05-FF6D6E8A7324}
 		{9BA916AD-7B38-4F46-B0C3-28D6B28C1366} = {53AB78DF-0DB7-4A98-9F05-FF6D6E8A7324}
 		{6027B49A-E668-4782-9370-23711652740C} = {53AB78DF-0DB7-4A98-9F05-FF6D6E8A7324}
+		{771E19C3-F53F-444C-93D2-973B34E19F22} = {53AB78DF-0DB7-4A98-9F05-FF6D6E8A7324}
+		{B168AD21-F9C8-44FC-B2A5-9296116CC93E} = {53AB78DF-0DB7-4A98-9F05-FF6D6E8A7324}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {29AFE217-9981-4535-9645-20C294563098}

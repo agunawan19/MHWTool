@@ -88,6 +88,14 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DoFactory.GangOfFour.Visitor.RealWorld\DoFactory.GangOfFour.Visitor.RealWorld.csproj">
+      <Project>{771e19c3-f53f-444c-93d2-973b34e19f22}</Project>
+      <Name>DoFactory.GangOfFour.Visitor.RealWorld</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EarningTaxationWithVisitorPattern\EarningTaxationWithVisitorPattern.csproj">
+      <Project>{b168ad21-f9c8-44fc-b2a5-9296116cc93e}</Project>
+      <Name>EarningTaxationWithVisitorPattern</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Mhw.DataAccess.EF\Mhw.DataAccess.EF.csproj">
       <Project>{1629f8ba-2174-4ab1-a0ff-e93754d12ff2}</Project>
       <Name>Mhw.DataAccess.EF</Name>

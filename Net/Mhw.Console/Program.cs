@@ -1,8 +1,12 @@
 ﻿using System;
+using System.Globalization;
+using DoFactory.GangOfFour.Visitor.RealWorld.Domains;
 using Mhw.DataAccess;
 using Mhw.Library.Enumerations;
 using Mhw.Library.Models;
 using Serilog;
+using Employee = Mhw.Library.Models.Employee;
+using EarningTaxationWithVisitorPattern;
 
 namespace MHWToolNetConsole
 {
@@ -10,6 +14,8 @@ namespace MHWToolNetConsole
     {
         private static void Main()
         {
+            AnotherVisitorPatternTest();
+            GangOfFourVisitorPatternTest();
             Test();
 
             Log.Logger = new LoggerConfiguration()
@@ -230,6 +236,109 @@ namespace MHWToolNetConsole
                 .SetName("Habitat 2");
 
             Console.ReadLine();
+        }
+
+        private static void GangOfFourVisitorPatternTest()
+        {
+            var e = new DoFactory.GangOfFour.Visitor.RealWorld.Domains.Employees();
+            e.Attach(new Clerk())
+                .Attach(new Director())
+                .Attach(new President())
+                .Accept(new IncomeVisitor())
+                .Accept(new VacationVisitor());
+
+            Console.ReadKey();
+        }
+
+        private static void AnotherVisitorPatternTest()
+        {
+            var employee = new EarningTaxationWithVisitorPattern.Employee
+            {
+                EmployeeId = "XYZ1001",
+                EmployeeName = "Banketeshvar Narayan Sharma",
+            };
+
+            AddDataForEmployee(employee);
+
+            var netAnnualEarningVisitor = new NetAnnualEarningVisitor();
+            var annualTaxableAmount = new TaxableAmountVisitor();
+            employee.Accept(netAnnualEarningVisitor);
+            employee.Accept(annualTaxableAmount);
+
+            Console.WriteLine($@"Annual Net Earning Amount : {netAnnualEarningVisitor.NetEarningOfTheYear}");
+            Console.WriteLine($@"Annual Taxable Amount : {annualTaxableAmount.TaxableAmount}");
+            Console.ReadKey();
+        }
+
+        private static void AddDataForEmployee(EarningTaxationWithVisitorPattern.Employee employee)
+        {
+            for (var i = 1; i <= 12; i++)
+            {
+                employee.Salaries.Add(new MonthlySalaryEarning
+                {
+                    MonthName = DateTimeFormatInfo.CurrentInfo?.GetMonthName(i),
+                    BasicSalary = 120_000,
+                    HRAExemption = 50_000,
+                    ConveyanceAllowance = 1_600,
+                    PersonalAllowance = 45_000,
+                    MedicalAllowance = 1_500,
+                    TelephoneBill = 2_500,
+                    FoodCardBill = 3_000,
+                    OtherBills = 35_000
+                });
+
+                employee.Salaries.Add(new MonthlySalaryDeduction
+                {
+                    MonthName = DateTimeFormatInfo.CurrentInfo?.GetMonthName(i),
+                    ProvidentFundEmployeeContribution = 8_000,
+                    ProvidentFundEmployerContribution = 8_000,
+                    OtherDeduction = 700,
+                    ProfessionTax = 200,
+                    TDS = 15_000
+                });
+
+                employee.Salaries.Add(new MonthlyExpense
+                {
+                    MonthName = DateTimeFormatInfo.CurrentInfo?.GetMonthName(1),
+                    MonthlyRent = 10_000
+                });
+            }
+
+            employee.Salaries.Add(new AnnualInvestment
+            {
+                InvestmentDetails = "MediclaimPolicy",
+                InvestmentAmount = 15_000
+            });
+            employee.Salaries.Add(new AnnualInvestment
+            {
+                InvestmentDetails = "MediclaimPolicyforParents",
+                InvestmentAmount = 25_000
+            });
+            employee.Salaries.Add(new AnnualInvestment
+            {
+                InvestmentDetails = "HouseLoan",
+                InvestmentAmount = 0
+            });
+            employee.Salaries.Add(new AnnualInvestment
+            {
+                InvestmentDetails = "EducationLoan",
+                InvestmentAmount = 0
+            });
+            employee.Salaries.Add(new AnnualInvestment
+            {
+                InvestmentDetails = "OtherInvestment",
+                InvestmentAmount = 5_000
+            });
+            employee.Salaries.Add(new AnnualInvestment
+            {
+                InvestmentDetails = "RGESS",
+                InvestmentAmount = 5_500
+            });
+            employee.Salaries.Add(new AnnualInvestment
+            {
+                InvestmentDetails = "Section80Cn80CCD_ExceptPF",
+                InvestmentAmount = 100_000
+            });
         }
     }
 }

@@ -13,7 +13,7 @@ namespace Mhw.DataAccess.EntityConfigurations
                 .IsRequired()
                 .IsConcurrencyToken();
             Property(t => t.Name)
-                .HasMaxLength(50);
+                .HasMaxLength(100);
 
             //HasKey(t => t.Id);
 

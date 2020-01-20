@@ -1,4 +1,6 @@
-﻿namespace Mhw.Library.Models
+﻿using System;
+
+namespace Mhw.Library.Models
 {
     public class Person : EntityBase
     {
@@ -7,5 +9,6 @@
         public string ZipCode { get; set; }
         public string City { get; set; }
         public string AddressLine { get; set; }
+        public override DateTime ModifiedDate { get; set; }
     }
 }

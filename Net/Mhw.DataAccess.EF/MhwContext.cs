@@ -1,4 +1,6 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Data.Entity;
+using System.Linq;
 using Mhw.DataAccess.Migrations;
 using Mhw.Library.Models;
 
@@ -37,5 +39,24 @@ namespace Mhw.DataAccess
             modelBuilder.Configurations.AddFromAssembly(assembly);
             modelBuilder.Conventions.AddFromAssembly(assembly);
         }
+
+        //public override int SaveChanges()
+        //{
+        //    var entries = ChangeTracker.Entries()
+        //        .Where(e => e.Entity is EntityBase &&
+        //                    (e.State == EntityState.Added || e.State == EntityState.Modified));
+
+        //    foreach (var entityEntry in entries)
+        //    {
+        //        ((EntityBase)entityEntry.Entity).ModifiedDate = DateTime.Now;
+
+        //        //if (entityEntry.State == EntityState.Added)
+        //        //{
+        //        //    ((EntityBase)entityEntry.Entity).CreatedDate = DateTime.Now;
+        //        //}
+        //    }
+
+        //    return base.SaveChanges();
+        //}
     }
 }

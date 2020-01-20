@@ -1,5 +1,9 @@
 ﻿using System;
 using System.Globalization;
+using System.Linq;
+using System.Reflection;
+using System.Runtime.CompilerServices;
+using System.Security;
 using DoFactory.GangOfFour.Visitor.RealWorld.Domains;
 using Mhw.DataAccess;
 using Mhw.Library.Enumerations;
@@ -7,6 +11,7 @@ using Mhw.Library.Models;
 using Serilog;
 using Employee = Mhw.Library.Models.Employee;
 using EarningTaxationWithVisitorPattern;
+using Mhw.Repository;
 
 namespace MHWToolNetConsole
 {
@@ -14,6 +19,7 @@ namespace MHWToolNetConsole
     {
         private static void Main()
         {
+            GenericRepositoryTest();
             AnotherVisitorPatternTest();
             GangOfFourVisitorPatternTest();
             Test();
@@ -265,8 +271,8 @@ namespace MHWToolNetConsole
             employee.Accept(netAnnualEarningVisitor);
             employee.Accept(annualTaxableAmount);
 
-            Console.WriteLine($@"Annual Net Earning Amount : {netAnnualEarningVisitor.NetEarningOfTheYear}");
-            Console.WriteLine($@"Annual Taxable Amount : {annualTaxableAmount.TaxableAmount}");
+            Console.WriteLine($"Annual Net Earning Amount : {netAnnualEarningVisitor.NetEarningOfTheYear}");
+            Console.WriteLine($"Annual Taxable Amount : {annualTaxableAmount.TaxableAmount}");
             Console.ReadKey();
         }
 
@@ -339,6 +345,81 @@ namespace MHWToolNetConsole
                 InvestmentDetails = "Section80Cn80CCD_ExceptPF",
                 InvestmentAmount = 100_000
             });
+        }
+
+        private static void GenericRepositoryTest()
+        {
+            using (var unitOfWork = new UnitOfWork<MhwContext>())
+            {
+                try
+                {
+                    using (IPersonRepository personRepository = new PersonRepository(unitOfWork))
+                    using (var personGenericRepository = new GenericRepository<Person>(unitOfWork))
+                    using (var skillGenericRepository = new GenericRepository<Skill>(unitOfWork))
+                    {
+                        var personCollection = personGenericRepository.GetAll();
+                        var skillCollection = skillGenericRepository.GetAll();
+
+                        var habitatGenericRepository = unitOfWork.GenericRepository<Habitat>();
+                        var habitatQuery = habitatGenericRepository.FirstOrDefault(t => t.Name == "AncientForest");
+
+                        var collection = personCollection.ToList();
+                        foreach (var person in collection)
+                        {
+                            ProcessProperties(person);
+                            person.Name += " Modified";
+                            person.AddressLine += " Modified";
+                            person.ModifiedDate = DateTime.Now;
+                            //person.SetModifiedDate(DateTime.Today);
+                        }
+
+                        var updated = collection.Find(p => p.PersonId == 1);
+                        if (updated != null) updated.City = "City 1 Updated";
+
+                        //personGenericRepository.Update(collection);
+                        //var singleOrDefault = collection.SingleOrDefault(p => p.Name.IndexOf("andri", StringComparison.OrdinalIgnoreCase) >= 0);
+                        //personRepository.Delete(singleOrDefault);
+
+                        personRepository?.Insert(new Person
+                        {
+                            Name = "Andri Gunawan",
+                            AddressLine = "Pilario St.",
+                            City = "Rowland Heights",
+                            ZipCode = "91748"
+                        });
+
+                        var enumerable = skillCollection.ToList();
+                        foreach (var skill in enumerable)
+                        {
+                            skill.Name += " Modified";
+                            skill.SetModifiedDate(DateTime.Now);
+                        }
+
+                        skillGenericRepository?.Update(enumerable);
+
+                        unitOfWork.CreateTransaction();
+                        var returnValue = unitOfWork.Save();
+                        unitOfWork.Commit();
+                    }
+                }
+                catch (Exception e)
+                {
+                    unitOfWork.Rollback();
+                    Console.WriteLine(e);
+                    throw;
+                }
+            }
+        }
+
+        private static void ProcessProperties(Person person)
+        {
+            var properties = typeof(Person).GetProperties();
+            foreach (var property in properties)
+            {
+                Console.WriteLine($@"{property.Name}: {property.GetValue(person)}");
+            }
+
+            Console.WriteLine(Enumerable.Repeat('-', 20).ToArray());
         }
     }
 }

@@ -13,9 +13,11 @@ namespace Mhw.DataAccess.EntityConfigurations
             //Property(t => t.Id)
             //    .IsRequired()
             //    .IsConcurrencyToken();
+            MapToStoredProcedures();
+
             Property(t => t.Name)
                 .IsRequired()
-                .HasMaxLength(50);
+                .HasMaxLength(100);
 
             //HasKey(t => t.Id);
 

@@ -14,7 +14,7 @@ namespace Mhw.DataAccess.EntityConfigurations
                 .IsConcurrencyToken();
             Property(t => t.Name)
                 .IsRequired()
-                .HasMaxLength(50);
+                .HasMaxLength(100);
             Property(t => t.MaximumLevel)
                 .HasColumnAnnotation("DefaultValue", 1);
 

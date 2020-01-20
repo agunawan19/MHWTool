@@ -104,6 +104,10 @@
       <Project>{0c9d4e2d-68d0-4306-9ec4-b6cd543fae2c}</Project>
       <Name>Mhw.Library</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Mhw.Repository\Mhw.Repository.csproj">
+      <Project>{a38f7083-7928-4f07-8c14-50390aaa9b5d}</Project>
+      <Name>Mhw.Repository</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">

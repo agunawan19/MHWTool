@@ -1,4 +1,5 @@
-﻿using Mhw.Library.Enumerations;
+﻿using System;
+using Mhw.Library.Enumerations;
 
 namespace Mhw.Library.Models
 {

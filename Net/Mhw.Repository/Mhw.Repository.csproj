@@ -52,7 +52,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GenericRepository.cs" />
+    <Compile Include="IGenericRepository.cs" />
+    <Compile Include="IPersonRepository.cs" />
     <Compile Include="IUnitOfWork.cs" />
+    <Compile Include="PersonRepository.cs" />
     <Compile Include="Repositories\IRepositoryAsync.cs" />
     <Compile Include="Repositories\IRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -67,6 +71,10 @@
     <ProjectReference Include="..\Mhw.DataAccess.EF\Mhw.DataAccess.EF.csproj">
       <Project>{1629F8BA-2174-4AB1-A0FF-E93754D12FF2}</Project>
       <Name>Mhw.DataAccess.EF</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Mhw.Library\Mhw.Library.csproj">
+      <Project>{0c9d4e2d-68d0-4306-9ec4-b6cd543fae2c}</Project>
+      <Name>Mhw.Library</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

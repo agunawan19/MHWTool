@@ -15,7 +15,7 @@ namespace Mhw.DataAccess.EntityConfigurations
             //    .IsConcurrencyToken();
             Property(t => t.Name)
                 .IsRequired()
-                .HasMaxLength(50);
+                .HasMaxLength(100);
 
             //HasKey(t => t.Id);
 
@@ -23,6 +23,8 @@ namespace Mhw.DataAccess.EntityConfigurations
                 .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
 
             HasMany(t => t.Materials);
+
+            MapToStoredProcedures();
         }
     }
 }

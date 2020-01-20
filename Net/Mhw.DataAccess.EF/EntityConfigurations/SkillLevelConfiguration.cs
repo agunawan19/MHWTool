@@ -14,6 +14,8 @@ namespace Mhw.DataAccess.EntityConfigurations
             //    .IsConcurrencyToken();
 
             //HasKey(t => t.Id);
+            Property(t => t.Description)
+                .HasMaxLength(1000);
         }
     }
 }

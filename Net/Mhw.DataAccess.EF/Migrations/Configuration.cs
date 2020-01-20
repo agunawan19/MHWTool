@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Linq.Expressions;
@@ -64,15 +65,16 @@ namespace Mhw.DataAccess.Migrations
                 t => t.Name);
         }
 
-        private static void AddOrUpdate<TEntity>(DbContext context, List<TEntity> entities, Expression<Func<TEntity, object>> identifierExpression = null) where TEntity : class
+        private static void AddOrUpdate<TEntity>(DbContext context, List<TEntity> entities,
+            Expression<Func<TEntity, object>> identifierExpression = null) where TEntity : class
         {
-            if (identifierExpression != null)
+            if (identifierExpression == null)
             {
-                context.Set<TEntity>().AddOrUpdate(identifierExpression, entities.ToArray());
+                context.Set<TEntity>().AddOrUpdate(entities.ToArray());
             }
             else
             {
-                context.Set<TEntity>().AddOrUpdate(entities.ToArray());
+                context.Set<TEntity>().AddOrUpdate(identifierExpression, entities.ToArray());
             }
         }
 

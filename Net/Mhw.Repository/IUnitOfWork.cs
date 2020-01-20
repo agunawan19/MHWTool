@@ -1,12 +1,20 @@
 ﻿using System;
+using System.Data.Entity;
 using System.Threading.Tasks;
+using Mhw.DataAccess;
 
 namespace Mhw.Repository
 {
-    public interface IUnitOfWork : IDisposable
+    public interface IUnitOfWork<out TContext> : IDisposable where TContext : DbContext, new()
     {
-        int Commit();
+        TContext Context { get; }
 
-        Task<int> CommitAsync();
+        void CreateTransaction();
+
+        void Rollback();
+
+        int Save();
+
+        void Commit();
     }
 }

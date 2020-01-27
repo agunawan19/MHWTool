@@ -1,9 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Security;
+using System.Text;
+using System.Threading.Tasks;
 using DoFactory.GangOfFour.Visitor.RealWorld.Domains;
 using Mhw.DataAccess;
 using Mhw.Library.Enumerations;
@@ -15,10 +19,11 @@ using Mhw.Repository;
 
 namespace MHWToolNetConsole
 {
-    internal static class Program
+    internal class Program
     {
         private static void Main()
         {
+            GenerateReport();
             GenericRepositoryTest();
             AnotherVisitorPatternTest();
             GangOfFourVisitorPatternTest();
@@ -361,7 +366,13 @@ namespace MHWToolNetConsole
                         var skillCollection = skillGenericRepository.GetAll();
 
                         var habitatGenericRepository = unitOfWork.GenericRepository<Habitat>();
-                        var habitatQuery = habitatGenericRepository.FirstOrDefault(t => t.Name == "AncientForest");
+                        //var habitatQuery = habitatGenericRepository.FirstOrDefault(t => t.Name == "AncientForest");
+                        habitatGenericRepository.Update(new Habitat
+                        {
+                            Id = HabitatEnum.AncientForest,
+                            Name = "AncientForest",
+                            ModifiedDate = new DateTime(2020, 1, 20)
+                        });
 
                         var collection = personCollection.ToList();
                         foreach (var person in collection)
@@ -420,6 +431,103 @@ namespace MHWToolNetConsole
             }
 
             Console.WriteLine(Enumerable.Repeat('-', 20).ToArray());
+        }
+
+        private static void GenerateReport()
+        {
+            var list = GenerateList();
+            decimal totalHour = 0;
+            var report = new StringBuilder();
+            var groupedReport = new StringBuilder();
+
+            report.Append("<Report>\r\n");
+
+            for (var i = 0; i < list.Count; i++)
+            {
+                var (id, hour) = list[i];
+
+                totalHour += hour;
+                groupedReport.Append(GenerateRecord(id, hour));
+
+                if (i < list.Count - 1 && list[i + 1].Id == id) continue;
+
+                report.AppendFormat("<RECORD_{0}>\r\n", id);
+                report.Append(GenerateHeader(id, totalHour));
+                report.Append(groupedReport);
+                report.AppendFormat("</RECORD_{0}>\r\n", id);
+                groupedReport.Clear();
+                totalHour = 0;
+            }
+
+            report.Append("</Report>\r\n");
+
+            WriteToFileAsync($@"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}\report.txt",
+                new UTF8Encoding(true),
+                report);
+
+            //File.WriteAllText($@"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}\report.txt", report.ToString(), Encoding.UTF8);
+
+            Console.WriteLine(report.ToString());
+        }
+
+        private static List<(string Id, decimal Hour)> GenerateList() =>
+            new List<(string, decimal)>
+            {
+                ("EMP000", 0.5m),
+                ("EMP000", 0.5m),
+                ("EMP001", 1.0m),
+                ("EMP001", 1.1m),
+                ("EMP002", 2.1m),
+                ("EMP002", 2.1m),
+                ("EMP003", 3.1m),
+                ("EMP003", 3.1m),
+                ("EMP003", 3.1m),
+                ("EMP004", 4.0m),
+                ("EMP005", 5.0m),
+                ("EMP005", 5.0m),
+                ("EMP006", 6.1m),
+                ("EMP006", 6.2m),
+                ("EMP006", 6.3m),
+                ("EMP006", 6.4m),
+                ("EMP006", 6.5m),
+                ("EMP006", 6.6m),
+                ("EMP007", 7.7m),
+            };
+
+        private static string GenerateHeader(string id, decimal totalHour) =>
+            $"\t=================\r\n" +
+            $"\tId = {id}\r\n" +
+            $"\tTotal Hour = {totalHour}\r\n" +
+            $"\t=================\r\n";
+
+        private static string GenerateRecord(string id, decimal hour) =>
+            $"\tEmployee Id = {id}\r\n" +
+            $"\tHour = {hour}\r\n";
+
+        private static StringBuilder GroupRecords(StringBuilder text, string id) =>
+            text.Insert(0, $"<RECORD_{id}>\r\n").Append($"<RECORD_{id}/>\r\n");
+
+        private static async void WriteToFileAsync(string filename, Encoding encoding, StringBuilder text)
+        {
+            byte[] result = encoding.GetBytes(text.ToString());
+
+            using (var fileStream = new FileStream(filename, FileMode.OpenOrCreate, FileAccess.ReadWrite,
+                FileShare.ReadWrite, 1024, true))
+            {
+                fileStream.Seek(0, SeekOrigin.End);
+                await fileStream.WriteAsync(result, 0, result.Length).ConfigureAwait(false);
+            }
+
+            //using (var sourceStream = File.Open(filename, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.ReadWrite))
+            //{
+            //    sourceStream.Seek(0, SeekOrigin.End);
+            //    await sourceStream.WriteAsync(result, 0, result.Length).ConfigureAwait(false);
+            //}
+
+            //using (var writer = File.CreateText(filename))
+            //{
+            //    await writer.WriteAsync(text.ToString());
+            //}
         }
     }
 }

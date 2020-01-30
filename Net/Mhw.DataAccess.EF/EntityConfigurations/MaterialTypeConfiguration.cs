@@ -24,7 +24,7 @@ namespace Mhw.DataAccess.EntityConfigurations
 
             HasMany(t => t.Materials);
 
-            MapToStoredProcedures();
+            //MapToStoredProcedures();
         }
     }
 }

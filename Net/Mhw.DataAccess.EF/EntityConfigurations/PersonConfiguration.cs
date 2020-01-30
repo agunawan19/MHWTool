@@ -38,7 +38,7 @@ namespace Mhw.DataAccess.EntityConfigurations
             Property(t => t.City).HasMaxLength(50);
             Property(t => t.ZipCode).HasColumnType("varchar").HasMaxLength(10);
 
-            MapToStoredProcedures();
+            //MapToStoredProcedures();
 
             Map(m =>
             {

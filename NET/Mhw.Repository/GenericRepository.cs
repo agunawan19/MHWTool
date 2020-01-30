@@ -72,7 +72,6 @@ namespace Mhw.Repository
                 if (entity != null)
                 {
                     if (Context == null || _isDisposed) Context = new MhwContext();
-
                     SetEntryModified(entity);
                 }
                 else
@@ -94,7 +93,10 @@ namespace Mhw.Repository
                 {
                     if (Context == null || _isDisposed) Context = new MhwContext();
 
-                    foreach (var entity in entities) SetEntryModified(entity);
+                    foreach (var entity in entities)
+                    {
+                        SetEntryModified(entity);
+                    }
                 }
                 else
                 {
@@ -107,7 +109,8 @@ namespace Mhw.Repository
             }
         }
 
-        public virtual void SetEntryModified(TEntity entity) => Context.Entry(entity).State = EntityState.Modified;
+        public virtual void SetEntryModified(TEntity entity) =>
+            Context.Entry(entity).State = EntityState.Modified;
 
         public virtual void Delete(TEntity entity)
         {

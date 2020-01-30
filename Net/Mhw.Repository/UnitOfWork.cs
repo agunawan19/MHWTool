@@ -27,7 +27,7 @@ namespace Mhw.Repository
 
         public void Rollback()
         {
-            if (_transaction == null) return;
+            if (_transaction?.UnderlyingTransaction?.Connection == null) return;
 
             using (_transaction)
             {
@@ -89,7 +89,7 @@ namespace Mhw.Repository
             if (_repositories.ContainsKey(type)) return (GenericRepository<TEntity>)_repositories[type];
 
             var repositoryType = typeof(GenericRepository<TEntity>);
-            //var repositoryInstance = Activator.CreateInstance(repositoryType.MakeGenericType(typeof(T)), Context);
+            //var repositoryInstance = Activator.CreateInstance(repositoryType.MakeGenericType(typeof(T)), MhwContext);
             var repositoryInstance = Activator.CreateInstance(repositoryType, Context);
             _repositories.Add(type, repositoryInstance);
 

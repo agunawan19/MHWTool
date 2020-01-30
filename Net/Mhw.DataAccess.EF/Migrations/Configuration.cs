@@ -11,7 +11,7 @@ using Mhw.Library.Models;
 
 namespace Mhw.DataAccess.Migrations
 {
-    internal sealed class Configuration : DbMigrationsConfiguration<MhwContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<MhwMigrationContext>
     {
         public Configuration()
         {
@@ -20,7 +20,7 @@ namespace Mhw.DataAccess.Migrations
             ContextKey = "MHWEntity.MhwContext";
         }
 
-        protected override void Seed(MhwContext context)
+        protected override void Seed(MhwMigrationContext context)
         {
             //  This method will be called after migrating to the latest version.
 

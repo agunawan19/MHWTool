@@ -2,9 +2,9 @@
 
 namespace Mhw.DataAccess.Initializer
 {
-    public class DropCreateDatabaseAlways : DropCreateDatabaseAlways<MhwContext>
+    public class CreateDatabaseIfNotExistsInitializer : CreateDatabaseIfNotExists<MhwMigrationContext>
     {
-        protected override void Seed(MhwContext context)
+        protected override void Seed(MhwMigrationContext developmentContext)
         {
             //IList<Grade> grades = new List<Grade>
             //{
@@ -15,9 +15,9 @@ namespace Mhw.DataAccess.Initializer
             //    new Grade() { GradeName = "Grade 3", Section = "C" }
             //};
 
-            //context.Grades.AddRange(grades);
+            //developmentContext.Grades.AddRange(grades);
 
-            base.Seed(context);
+            base.Seed(developmentContext);
         }
     }
 }

@@ -13,7 +13,7 @@ namespace Mhw.DataAccess.EntityConfigurations
             //Property(t => t.Id)
             //    .IsRequired()
             //    .IsConcurrencyToken();
-            MapToStoredProcedures();
+            //MapToStoredProcedures();
 
             Property(t => t.Name)
                 .IsRequired()

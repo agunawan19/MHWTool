@@ -19,15 +19,21 @@ using Mhw.Repository;
 
 namespace MHWToolNetConsole
 {
-    internal class Program
+    internal static class Program
     {
         private static void Main()
         {
-            GenerateReport();
+            //using (var mhwContext = new MhwContext2())
+            //{
+            //    var record = mhwContext.Skills.Find(1);
+            //    record.ModifiedDate = DateTime.Now;
+            //    mhwContext.SaveChanges();
+            //}
+            //GenerateReport();
             GenericRepositoryTest();
-            AnotherVisitorPatternTest();
-            GangOfFourVisitorPatternTest();
-            Test();
+            //AnotherVisitorPatternTest();
+            //GangOfFourVisitorPatternTest();
+            //Test();
 
             Log.Logger = new LoggerConfiguration()
                 .MinimumLevel.Debug()
@@ -359,54 +365,61 @@ namespace MHWToolNetConsole
                 try
                 {
                     using (IPersonRepository personRepository = new PersonRepository(unitOfWork))
+                    using (ISkillRepository skillRepository = new SkillRepository(unitOfWork))
                     using (var personGenericRepository = new GenericRepository<Person>(unitOfWork))
                     using (var skillGenericRepository = new GenericRepository<Skill>(unitOfWork))
                     {
                         var personCollection = personGenericRepository.GetAll();
                         var skillCollection = skillGenericRepository.GetAll();
+                        var skillDetailCollection = skillRepository.GetDetailAll();
+                        var skill = skillDetailCollection.First();
+                        skill.Name += "Modified";
+                        skill.ModifiedDate = DateTime.Now;
 
-                        var habitatGenericRepository = unitOfWork.GenericRepository<Habitat>();
-                        //var habitatQuery = habitatGenericRepository.FirstOrDefault(t => t.Name == "AncientForest");
-                        habitatGenericRepository.Update(new Habitat
-                        {
-                            Id = HabitatEnum.AncientForest,
-                            Name = "AncientForest",
-                            ModifiedDate = new DateTime(2020, 1, 20)
-                        });
+                        skillRepository.Update(skill);
 
-                        var collection = personCollection.ToList();
-                        foreach (var person in collection)
-                        {
-                            ProcessProperties(person);
-                            person.Name += " Modified";
-                            person.AddressLine += " Modified";
-                            person.ModifiedDate = DateTime.Now;
-                            //person.SetModifiedDate(DateTime.Today);
-                        }
+                        //var habitatGenericRepository = unitOfWork.GenericRepository<Habitat>();
+                        ////var habitatQuery = habitatGenericRepository.FirstOrDefault(t => t.Name == "AncientForest");
+                        //habitatGenericRepository.Update(new Habitat
+                        //{
+                        //    Id = HabitatEnum.AncientForest,
+                        //    Name = "AncientForest",
+                        //    ModifiedDate = new DateTime(2020, 1, 20)
+                        //});
 
-                        var updated = collection.Find(p => p.PersonId == 1);
-                        if (updated != null) updated.City = "City 1 Updated";
+                        //var collection = personCollection.ToList();
+                        //foreach (var person in collection)
+                        //{
+                        //    ProcessProperties(person);
+                        //    person.Name += " Modified";
+                        //    person.AddressLine += " Modified";
+                        //    person.ModifiedDate = DateTime.Now;
+                        //    //person.SetModifiedDate(DateTime.Today);
+                        //}
+
+                        //var updated = collection.Find(p => p.PersonId == 1);
+                        //if (updated != null) updated.City = "City 1 Updated";
 
                         //personGenericRepository.Update(collection);
-                        //var singleOrDefault = collection.SingleOrDefault(p => p.Name.IndexOf("andri", StringComparison.OrdinalIgnoreCase) >= 0);
-                        //personRepository.Delete(singleOrDefault);
+                        ////var singleOrDefault = collection.SingleOrDefault(p => p.Name.IndexOf("andri", StringComparison.OrdinalIgnoreCase) >= 0);
+                        ////personRepository.Delete(singleOrDefault);
 
-                        personRepository?.Insert(new Person
+                        personGenericRepository?.Insert(new Person
                         {
-                            Name = "Andri Gunawan",
-                            AddressLine = "Pilario St.",
-                            City = "Rowland Heights",
-                            ZipCode = "91748"
+                            Name = "Person One Name",
+                            AddressLine = "Person One St",
+                            City = "City",
+                            ZipCode = "12345"
                         });
 
-                        var enumerable = skillCollection.ToList();
-                        foreach (var skill in enumerable)
-                        {
-                            skill.Name += " Modified";
-                            skill.SetModifiedDate(DateTime.Now);
-                        }
+                        //var enumerable = skillCollection.ToList();
+                        //foreach (var skill in enumerable)
+                        //{
+                        //    skill.Name += " Modified";
+                        //    skill.SetModifiedDate(DateTime.Now);
+                        //}
 
-                        skillGenericRepository?.Update(enumerable);
+                        //skillGenericRepository?.Update(enumerable);
 
                         unitOfWork.CreateTransaction();
                         var returnValue = unitOfWork.Save();

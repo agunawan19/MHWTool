@@ -57,7 +57,10 @@ namespace Mhw.Repository
             {
                 if (entity != null)
                 {
-                    if (Context == null || _isDisposed) Context = new MhwContext();
+                    if (Context == null || _isDisposed)
+                    {
+                        Context = new MhwContext();
+                    }
 
                     Context.Set<TEntity>().AddOrUpdate(entity);
                 }
@@ -66,9 +69,9 @@ namespace Mhw.Repository
                     throw new ArgumentNullException(nameof(entity));
                 }
             }
-            catch (DbEntityValidationException dbEx)
+            catch (DbEntityValidationException exception)
             {
-                ThrowException(dbEx, GetEntityValidationErrorMessage(dbEx));
+                ThrowException(exception, GetEntityValidationErrorMessage(exception));
             }
         }
 
@@ -78,16 +81,19 @@ namespace Mhw.Repository
             {
                 if (entities != null)
                 {
-                    foreach (var entity in entities) InsertOrUpdate(entity);
+                    foreach (var entity in entities)
+                    {
+                        InsertOrUpdate(entity);
+                    }
                 }
                 else
                 {
                     throw new ArgumentNullException(nameof(entities));
                 }
             }
-            catch (DbEntityValidationException dbEx)
+            catch (DbEntityValidationException exception)
             {
-                ThrowException(dbEx, GetEntityValidationErrorMessage(dbEx));
+                ThrowException(exception, GetEntityValidationErrorMessage(exception));
             }
         }
 
@@ -97,7 +103,10 @@ namespace Mhw.Repository
             {
                 if (entity != null)
                 {
-                    if (Context == null || _isDisposed) Context = new MhwContext();
+                    if (Context == null || _isDisposed)
+                    {
+                        Context = new MhwContext();
+                    }
 
                     Entities.Add(entity);
                 }
@@ -106,9 +115,9 @@ namespace Mhw.Repository
                     throw new ArgumentNullException(nameof(entity));
                 }
             }
-            catch (DbEntityValidationException dbEx)
+            catch (DbEntityValidationException exception)
             {
-                ThrowException(dbEx, GetEntityValidationErrorMessage(dbEx));
+                ThrowException(exception, GetEntityValidationErrorMessage(exception));
             }
         }
 
@@ -118,16 +127,19 @@ namespace Mhw.Repository
             {
                 if (entities != null)
                 {
-                    foreach (var entity in entities) Insert(entity);
+                    foreach (var entity in entities)
+                    {
+                        Insert(entity);
+                    }
                 }
                 else
                 {
                     throw new ArgumentNullException(nameof(entities));
                 }
             }
-            catch (DbEntityValidationException dbEx)
+            catch (DbEntityValidationException exception)
             {
-                ThrowException(dbEx, GetEntityValidationErrorMessage(dbEx));
+                ThrowException(exception, GetEntityValidationErrorMessage(exception));
             }
         }
 
@@ -137,7 +149,10 @@ namespace Mhw.Repository
             {
                 if (entity != null)
                 {
-                    if (Context == null || _isDisposed) Context = new MhwContext();
+                    if (Context == null || _isDisposed)
+                    {
+                        Context = new MhwContext();
+                    }
 
                     AttachEntity(entity);
                     SetEntryModified(entity);
@@ -147,16 +162,27 @@ namespace Mhw.Repository
                     throw new ArgumentNullException(nameof(entity));
                 }
             }
-            catch (DbEntityValidationException dbEx)
+            catch (DbEntityValidationException exception)
             {
-                ThrowException(dbEx, GetEntityValidationErrorMessage(dbEx));
+                ThrowException(exception, GetEntityValidationErrorMessage(exception));
             }
         }
 
         private bool AttachEntity(TEntity entity)
         {
             var isDetached = Context.Entry(entity).State == EntityState.Detached;
-            if (isDetached) Context.Set<TEntity>().Attach(entity);
+
+            try
+            {
+                if (isDetached)
+                {
+                    Context.Set<TEntity>().Attach(entity);
+                }
+            }
+            catch (Exception e)
+            {
+                ThrowException(e, e.Message);
+            }
 
             return isDetached;
         }
@@ -167,20 +193,33 @@ namespace Mhw.Repository
             {
                 if (entities != null)
                 {
-                    foreach (var entity in entities) Update(entity);
+                    foreach (var entity in entities)
+                    {
+                        Update(entity);
+                    }
                 }
                 else
                 {
                     throw new ArgumentNullException(nameof(entities));
                 }
             }
-            catch (DbEntityValidationException dbEx)
+            catch (DbEntityValidationException exception)
             {
-                ThrowException(dbEx, GetEntityValidationErrorMessage(dbEx));
+                ThrowException(exception, GetEntityValidationErrorMessage(exception));
             }
         }
 
-        protected virtual void SetEntryModified(TEntity entity) => Context.Entry(entity).State = EntityState.Modified;
+        protected virtual void SetEntryModified(TEntity entity)
+        {
+            try
+            {
+                Context.Entry(entity).State = EntityState.Modified;
+            }
+            catch (Exception e)
+            {
+                ThrowException(e, e.Message);
+            }
+        }
 
         protected virtual void SetEntryDeleted(TEntity entity) => Context.Entry(entity).State = EntityState.Deleted;
 
@@ -190,7 +229,10 @@ namespace Mhw.Repository
             {
                 if (entity != null)
                 {
-                    if (Context == null || _isDisposed) Context = new MhwContext();
+                    if (Context == null || _isDisposed)
+                    {
+                        Context = new MhwContext();
+                    }
 
                     AttachEntity(entity);
                     Entities.Remove(entity);
@@ -200,9 +242,9 @@ namespace Mhw.Repository
                     throw new ArgumentNullException(nameof(entity));
                 }
             }
-            catch (DbEntityValidationException dbEx)
+            catch (DbEntityValidationException exception)
             {
-                ThrowException(dbEx, GetEntityValidationErrorMessage(dbEx));
+                ThrowException(exception, GetEntityValidationErrorMessage(exception));
             }
         }
 
@@ -212,29 +254,32 @@ namespace Mhw.Repository
             {
                 if (entities != null)
                 {
-                    foreach (var entity in entities) Delete(entity);
+                    foreach (var entity in entities)
+                    {
+                        Delete(entity);
+                    }
                 }
                 else
                 {
                     throw new ArgumentNullException(nameof(entities));
                 }
             }
-            catch (DbEntityValidationException dbEx)
+            catch (DbEntityValidationException exception)
             {
-                ThrowException(dbEx, GetEntityValidationErrorMessage(dbEx));
+                ThrowException(exception, GetEntityValidationErrorMessage(exception));
             }
         }
 
-        private void ThrowException(Exception dbEx, string errorMessage)
+        private void ThrowException(Exception exception, string errorMessage)
         {
-            throw new Exception(errorMessage, dbEx);
+            throw new Exception(errorMessage, exception);
         }
 
-        private string GetEntityValidationErrorMessage(DbEntityValidationException dbEx)
+        private string GetEntityValidationErrorMessage(DbEntityValidationException exception)
         {
             var errorMessage = new StringBuilder();
 
-            foreach (var validationErrors in dbEx.EntityValidationErrors)
+            foreach (var validationErrors in exception.EntityValidationErrors)
             {
                 GetValidationErrorMessage(validationErrors, errorMessage);
             }

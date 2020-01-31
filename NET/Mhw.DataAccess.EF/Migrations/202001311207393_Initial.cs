@@ -139,7 +139,14 @@
                                     new AnnotationValues(oldValue: null, newValue: "")
                                 },
                             }),
-                        IsSecretLevel = c.Boolean(nullable: false),
+                        IsSecretLevel = c.Boolean(nullable: false, defaultValue: false,
+                            annotations: new Dictionary<string, AnnotationValues>
+                            {
+                                { 
+                                    "DefaultValue",
+                                    new AnnotationValues(oldValue: null, newValue: "False")
+                                },
+                            }),
                         SkillId = c.Short(),
                         CreatedUtcDate = c.DateTime(nullable: false, precision: 7, defaultValueSql: "GETUTCDATE()", storeType: "datetime2",
                             annotations: new Dictionary<string, AnnotationValues>
@@ -159,7 +166,7 @@
                             }),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Skills", t => t.SkillId)
+                .ForeignKey("dbo.Skills", t => t.SkillId, cascadeDelete: true)
                 .Index(t => t.SkillId);
             
             CreateTable(
@@ -348,6 +355,13 @@
                         new Dictionary<string, object>
                         {
                             { "DefaultValue", "" },
+                        }
+                    },
+                    {
+                        "IsSecretLevel",
+                        new Dictionary<string, object>
+                        {
+                            { "DefaultValue", "False" },
                         }
                     },
                     {

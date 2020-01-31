@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using Mhw.DataAccess.Initializer;
 using Mhw.DataAccess.Migrations;
@@ -26,12 +27,14 @@ namespace Mhw.DataAccess
             //Database.SetInitializer(new MigrateDatabaseToLatestVersion<MhwDevelopmentContext, Configuration>());
             //Database.SetInitializer(new MHWDbInitializer());
             //Database.SetInitializer(new CreateDatabaseIfNotExistsInitializer());
+            Database.SetInitializer<MhwContext>(null);
         }
 
         internal MhwContext(string connectionString) : base(connectionString)
         {
             //Database.SetInitializer(new MHWDbInitializer());
             //Database.SetInitializer(new MigrateDatabaseToLatestVersion<MhwDevelopmentContext, Configuration>());
+            Database.SetInitializer<MhwContext>(null);
         }
 
         //protected override void OnModelCreating(DbModelBuilder modelBuilder)

@@ -9,9 +9,9 @@ namespace Mhw.DataAccess.EntityConfigurations
     {
         internal SkillConfiguration()
         {
-            Property(t => t.Id)
-                .IsRequired()
-                .IsConcurrencyToken();
+            //Property(t => t.Id)
+            //    .IsRequired()
+            //    .IsConcurrencyToken();
             Property(t => t.Name)
                 .IsRequired()
                 .HasMaxLength(100);
@@ -27,7 +27,7 @@ namespace Mhw.DataAccess.EntityConfigurations
             HasMany(t => t.SkillLevels)
                 .WithOptional(t => t.Skill)
                 .HasForeignKey(t => t.SkillId)
-                .WillCascadeOnDelete(false);
+                .WillCascadeOnDelete(true);
         }
     }
 }

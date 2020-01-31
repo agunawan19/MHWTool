@@ -43,9 +43,9 @@
     <Compile Include="EntityConfigurations\HabitatConfiguration.cs" />
     <Compile Include="EntityConfigurations\SkillLevelConfiguration.cs" />
     <Compile Include="EntityConfigurations\SkillConfiguration.cs" />
-    <Compile Include="Migrations\202001310309130_Initial.cs" />
-    <Compile Include="Migrations\202001310309130_Initial.designer.cs">
-      <DependentUpon>202001310309130_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\202001311207393_Initial.cs" />
+    <Compile Include="Migrations\202001311207393_Initial.designer.cs">
+      <DependentUpon>202001311207393_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MhwMigrationContext.cs" />
@@ -80,8 +80,8 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202001310309130_Initial.resx">
-      <DependentUpon>202001310309130_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202001311207393_Initial.resx">
+      <DependentUpon>202001311207393_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

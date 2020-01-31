@@ -21,6 +21,7 @@ namespace Mhw.DataAccess.Conventions
             //    .Where(p => p.Name == p.DeclaringType?.Name + "_ID")
             //    .Configure(p => p.IsKey());
             SetStringDefaultValueConvention();
+            SetBooleanDefaultValueConvention();
             SetUtcDateForCreatedDate();
             SetDateTimeDefaultValueConvention();
         }
@@ -32,6 +33,15 @@ namespace Mhw.DataAccess.Conventions
                 {
                     p.IsRequired()
                         .HasColumnAnnotation(DefaultValue, string.Empty);
+                });
+
+        private void SetBooleanDefaultValueConvention() =>
+            Properties()
+                .Where(p => p.PropertyType.Name == nameof(Boolean))
+                .Configure(p =>
+                {
+                    p.IsRequired()
+                        .HasColumnAnnotation(DefaultValue, false);
                 });
 
         private void SetUtcDateForCreatedDate() =>

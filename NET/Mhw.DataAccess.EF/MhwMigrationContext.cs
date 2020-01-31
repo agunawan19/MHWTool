@@ -30,7 +30,7 @@ namespace Mhw.DataAccess
         internal MhwMigrationContext(string connectionString) : base(connectionString)
         {
             //Database.SetInitializer(new MHWDbInitializer());
-            //Database.SetInitializer(new MigrateDatabaseToLatestVersion<MhwDevelopmentContext, Configuration>());
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<MhwMigrationContext, Configuration>());
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

@@ -396,6 +396,7 @@ namespace MHWToolNetConsole
                     //using (var skillGenericRepository = new GenericRepository<Skill>(unitOfWork))
                     using (var skillLevelGenericRepository = new GenericRepository<SkillLevel>(unitOfWork))
                     {
+                        //var habitatGenericRepository = unitOfWork.GenericRepository<Habitat>();
                         //var personCollection = personGenericRepository.GetAll();
                         //var skillCollection = skillGenericRepository.GetAll();
                         var skillDetailCollection = skillRepository.GetDetailAll(false);

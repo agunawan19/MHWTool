@@ -82,14 +82,20 @@ namespace Mhw.Repository
 
         public GenericRepository<TEntity> GenericRepository<TEntity>() where TEntity : class
         {
-            if (_repositories == null) _repositories = new Dictionary<string, object>();
+            if (_repositories == null)
+            {
+                _repositories = new Dictionary<string, object>();
+            }
 
             var type = typeof(TEntity).Name;
 
-            if (_repositories.ContainsKey(type)) return (GenericRepository<TEntity>)_repositories[type];
+            if (_repositories.ContainsKey(type))
+            {
+                return (GenericRepository<TEntity>)_repositories[type];
+            }
 
             var repositoryType = typeof(GenericRepository<TEntity>);
-            //var repositoryInstance = Activator.CreateInstance(repositoryType.MakeGenericType(typeof(T)), MhwContext);
+            //var repositoryInstance = Activator.CreateInstance(repositoryType.MakeGenericType(typeof(TEntity)), typeof(MhwContext));
             var repositoryInstance = Activator.CreateInstance(repositoryType, Context);
             _repositories.Add(type, repositoryInstance);
 

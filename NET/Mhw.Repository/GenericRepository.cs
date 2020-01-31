@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.Data.Entity.Validation;
 using System.Linq;
 using System.Linq.Expressions;
@@ -14,8 +15,7 @@ namespace Mhw.Repository
         private IDbSet<TEntity> _entities;
         private bool _isDisposed;
 
-        public GenericRepository(IUnitOfWork<MhwContext> unitOfWork)
-            : this(unitOfWork.Context)
+        public GenericRepository(IUnitOfWork<MhwContext> unitOfWork) : this(unitOfWork.Context)
         {
         }
 
@@ -28,21 +28,68 @@ namespace Mhw.Repository
         protected virtual IDbSet<TEntity> Entities =>
             _entities ?? (_entities = Context.Set<TEntity>());
 
+        private IQueryable<TEntity> EntitiesAsNoTracking => Entities.AsNoTracking();
+
         public void Dispose()
         {
             Context?.Dispose();
             _isDisposed = true;
         }
 
-        public virtual IEnumerable<TEntity> GetAll() => Entities.ToList();
+        public virtual IEnumerable<TEntity> GetAll(bool trackChanges = true) => trackChanges
+            ? Entities.ToList()
+            : EntitiesAsNoTracking.ToList();
 
         public virtual TEntity GetById(object id) => Entities.Find(id);
 
-        public IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate) => Entities.Where(predicate);
+        public IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate, bool trackChanges = true) =>
+            trackChanges ? Entities.Where(predicate) : EntitiesAsNoTracking.Where(predicate);
 
-        public TEntity SingleOrDefault(Expression<Func<TEntity, bool>> predicate) => Entities.SingleOrDefault(predicate);
+        public TEntity SingleOrDefault(Expression<Func<TEntity, bool>> predicate, bool trackChanges = true) =>
+            trackChanges ? Entities.SingleOrDefault(predicate) : EntitiesAsNoTracking.SingleOrDefault(predicate);
 
-        public TEntity FirstOrDefault(Expression<Func<TEntity, bool>> predicate) => Entities.FirstOrDefault(predicate);
+        public TEntity FirstOrDefault(Expression<Func<TEntity, bool>> predicate, bool trackChanges = true) =>
+            trackChanges ? Entities.FirstOrDefault(predicate) : EntitiesAsNoTracking.FirstOrDefault(predicate);
+
+        public virtual void InsertOrUpdate(TEntity entity)
+        {
+            try
+            {
+                if (entity != null)
+                {
+                    if (Context == null || _isDisposed) Context = new MhwContext();
+
+                    Context.Set<TEntity>().AddOrUpdate(entity);
+                }
+                else
+                {
+                    throw new ArgumentNullException(nameof(entity));
+                }
+            }
+            catch (DbEntityValidationException dbEx)
+            {
+                ThrowException(dbEx, GetEntityValidationErrorMessage(dbEx));
+            }
+        }
+
+        public void InsertOrUpdateRange(IEnumerable<TEntity> entities)
+        {
+            try
+            {
+                if (entities != null)
+                {
+                    foreach (var entity in entities) InsertOrUpdate(entity);
+                }
+                else
+                {
+                    throw new ArgumentNullException(nameof(entities));
+                }
+            }
+            catch (DbEntityValidationException dbEx)
+            {
+                ThrowException(dbEx, GetEntityValidationErrorMessage(dbEx));
+            }
+        }
 
         public virtual void Insert(TEntity entity)
         {
@@ -50,13 +97,32 @@ namespace Mhw.Repository
             {
                 if (entity != null)
                 {
-                    Entities.Add(entity);
-
                     if (Context == null || _isDisposed) Context = new MhwContext();
+
+                    Entities.Add(entity);
                 }
                 else
                 {
                     throw new ArgumentNullException(nameof(entity));
+                }
+            }
+            catch (DbEntityValidationException dbEx)
+            {
+                ThrowException(dbEx, GetEntityValidationErrorMessage(dbEx));
+            }
+        }
+
+        public void InsertRange(IEnumerable<TEntity> entities)
+        {
+            try
+            {
+                if (entities != null)
+                {
+                    foreach (var entity in entities) Insert(entity);
+                }
+                else
+                {
+                    throw new ArgumentNullException(nameof(entities));
                 }
             }
             catch (DbEntityValidationException dbEx)
@@ -72,6 +138,8 @@ namespace Mhw.Repository
                 if (entity != null)
                 {
                     if (Context == null || _isDisposed) Context = new MhwContext();
+
+                    AttachEntity(entity);
                     SetEntryModified(entity);
                 }
                 else
@@ -85,18 +153,21 @@ namespace Mhw.Repository
             }
         }
 
-        public void Update(IEnumerable<TEntity> entities)
+        private bool AttachEntity(TEntity entity)
+        {
+            var isDetached = Context.Entry(entity).State == EntityState.Detached;
+            if (isDetached) Context.Set<TEntity>().Attach(entity);
+
+            return isDetached;
+        }
+
+        public void UpdateRange(IEnumerable<TEntity> entities)
         {
             try
             {
                 if (entities != null)
                 {
-                    if (Context == null || _isDisposed) Context = new MhwContext();
-
-                    foreach (var entity in entities)
-                    {
-                        SetEntryModified(entity);
-                    }
+                    foreach (var entity in entities) Update(entity);
                 }
                 else
                 {
@@ -109,8 +180,9 @@ namespace Mhw.Repository
             }
         }
 
-        public virtual void SetEntryModified(TEntity entity) =>
-            Context.Entry(entity).State = EntityState.Modified;
+        protected virtual void SetEntryModified(TEntity entity) => Context.Entry(entity).State = EntityState.Modified;
+
+        protected virtual void SetEntryDeleted(TEntity entity) => Context.Entry(entity).State = EntityState.Deleted;
 
         public virtual void Delete(TEntity entity)
         {
@@ -120,11 +192,31 @@ namespace Mhw.Repository
                 {
                     if (Context == null || _isDisposed) Context = new MhwContext();
 
+                    AttachEntity(entity);
                     Entities.Remove(entity);
                 }
                 else
                 {
                     throw new ArgumentNullException(nameof(entity));
+                }
+            }
+            catch (DbEntityValidationException dbEx)
+            {
+                ThrowException(dbEx, GetEntityValidationErrorMessage(dbEx));
+            }
+        }
+
+        public void DeleteRange(IEnumerable<TEntity> entities)
+        {
+            try
+            {
+                if (entities != null)
+                {
+                    foreach (var entity in entities) Delete(entity);
+                }
+                else
+                {
+                    throw new ArgumentNullException(nameof(entities));
                 }
             }
             catch (DbEntityValidationException dbEx)
@@ -142,7 +234,10 @@ namespace Mhw.Repository
         {
             var errorMessage = new StringBuilder();
 
-            foreach (var validationErrors in dbEx.EntityValidationErrors) GetValidationErrorMessage(validationErrors, errorMessage);
+            foreach (var validationErrors in dbEx.EntityValidationErrors)
+            {
+                GetValidationErrorMessage(validationErrors, errorMessage);
+            }
 
             return errorMessage.ToString();
         }

@@ -55,6 +55,7 @@
                                 },
                             }),
                         Rarity = c.Byte(nullable: false),
+                        TypeId = c.Int(nullable: false),
                         CreatedUtcDate = c.DateTime(nullable: false, precision: 7, defaultValueSql: "GETUTCDATE()", storeType: "datetime2",
                             annotations: new Dictionary<string, AnnotationValues>
                             {
@@ -71,7 +72,6 @@
                                     new AnnotationValues(oldValue: null, newValue: "CURRENT_TIMESTAMP")
                                 },
                             }),
-                        TypeId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.MaterialTypes", t => t.TypeId, cascadeDelete: true)
@@ -140,6 +140,7 @@
                                 },
                             }),
                         IsSecretLevel = c.Boolean(nullable: false),
+                        SkillId = c.Short(),
                         CreatedUtcDate = c.DateTime(nullable: false, precision: 7, defaultValueSql: "GETUTCDATE()", storeType: "datetime2",
                             annotations: new Dictionary<string, AnnotationValues>
                             {
@@ -156,10 +157,9 @@
                                     new AnnotationValues(oldValue: null, newValue: "CURRENT_TIMESTAMP")
                                 },
                             }),
-                        SkillId = c.Short(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Skills", t => t.SkillId, cascadeDelete: true)
+                .ForeignKey("dbo.Skills", t => t.SkillId)
                 .Index(t => t.SkillId);
             
             CreateTable(

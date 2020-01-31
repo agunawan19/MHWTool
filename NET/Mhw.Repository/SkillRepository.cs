@@ -17,9 +17,8 @@ namespace Mhw.Repository
         {
         }
 
-        public IEnumerable<Skill> GetDetailAll()
-        {
-            return Context.Skills.Include(e => e.SkillLevels).ToList();
-        }
+        public IEnumerable<Skill> GetDetailAll(bool trackChanges = true) => trackChanges
+            ? Context.Skills.Include(e => e.SkillLevels).ToList()
+            : Context.Skills.AsNoTracking().Include(e => e.SkillLevels).AsNoTracking().ToList();
     }
 }

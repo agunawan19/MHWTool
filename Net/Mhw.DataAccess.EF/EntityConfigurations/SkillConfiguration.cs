@@ -24,7 +24,10 @@ namespace Mhw.DataAccess.EntityConfigurations
             //    .HasMany(skill => skill.SkillLevels)
             //    .WithRequired(skillLevel => skillLevel.Skill)
             //    .HasForeignKey(skillLevel => skillLevel.SkillId);
-            HasMany(t => t.SkillLevels);
+            HasMany(t => t.SkillLevels)
+                .WithOptional(t => t.Skill)
+                .HasForeignKey(t => t.SkillId)
+                .WillCascadeOnDelete(false);
         }
     }
 }

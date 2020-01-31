@@ -8,6 +8,8 @@ namespace Mhw.Repository
 {
     public interface ISkillRepository : IGenericRepository<Skill>
     {
-        IEnumerable<Skill> GetDetailAll();
+        IEnumerable<Skill> GetDetailAll(bool trackChanges = true);
+        //IEnumerable<Skill> GetDetailAllNoTracking();
+
     }
 }

@@ -16,6 +16,8 @@ namespace Mhw.DataAccess.EntityConfigurations
             //HasKey(t => t.Id);
             Property(t => t.Description)
                 .HasMaxLength(1000);
+
+            Property(t => t.SkillId).IsOptional();
         }
     }
 }

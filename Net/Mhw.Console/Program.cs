@@ -16,6 +16,7 @@ using Serilog;
 using Employee = Mhw.Library.Models.Employee;
 using EarningTaxationWithVisitorPattern;
 using Mhw.Repository;
+using System.Data.Entity;
 
 namespace MHWToolNetConsole
 {
@@ -29,6 +30,9 @@ namespace MHWToolNetConsole
             //    record.ModifiedDate = DateTime.Now;
             //    mhwContext.SaveChanges();
             //}
+
+            //SampleOfUsingNoTracking();
+
             //GenerateReport();
             GenericRepositoryTest();
             //AnotherVisitorPatternTest();
@@ -91,6 +95,28 @@ namespace MHWToolNetConsole
             //armors
             //    .Where(armor => armor.Name.Contains(" Arms")).ToList()
             //    .ForEach(armor => Console.WriteLine(armor.Name));
+        }
+
+        private static void SampleOfUsingNoTracking()
+        {
+            using (var context = new MhwContext())
+            {
+                var skills = context.Skills.AsNoTracking().ToList();
+                var skill = skills.First();
+                skill.Name = "Skill 1 (Modified)";
+                context.Skills.Attach(skill);
+                context.Entry(skill).Property(t => t.Name).IsModified = true;
+
+                var skill2 = new Skill
+                {
+                    Name = "New Skill 2",
+                    MaximumLevel = 2
+                };
+
+                context.Skills.Add(skill2);
+
+                context.SaveChanges();
+            }
         }
 
         //private static List<IArmorSet> GetArmorSetList()
@@ -364,28 +390,43 @@ namespace MHWToolNetConsole
             {
                 try
                 {
-                    using (IPersonRepository personRepository = new PersonRepository(unitOfWork))
+                    //using (IPersonRepository personRepository = new PersonRepository(unitOfWork))
                     using (ISkillRepository skillRepository = new SkillRepository(unitOfWork))
-                    using (var personGenericRepository = new GenericRepository<Person>(unitOfWork))
-                    using (var skillGenericRepository = new GenericRepository<Skill>(unitOfWork))
+                    //using (var personGenericRepository = new GenericRepository<Person>(unitOfWork))
+                    //using (var skillGenericRepository = new GenericRepository<Skill>(unitOfWork))
+                    using (var skillLevelGenericRepository = new GenericRepository<SkillLevel>(unitOfWork))
                     {
-                        var personCollection = personGenericRepository.GetAll();
-                        var skillCollection = skillGenericRepository.GetAll();
-                        var skillDetailCollection = skillRepository.GetDetailAll();
+                        //var personCollection = personGenericRepository.GetAll();
+                        //var skillCollection = skillGenericRepository.GetAll();
+                        var skillDetailCollection = skillRepository.GetDetailAll(false);
                         var skill = skillDetailCollection.First();
-                        skill.Name += "Modified";
-                        skill.ModifiedDate = DateTime.Now;
+                        //var skillLevels = skillLevelGenericRepository.Find(t => t.SkillId == skill.Id, false).ToList();
+                        //skillLevelGenericRepository.DeleteRange(skillLevels);
+                        //skill.Name += "[Modified II]";
+                        //skill.ModifiedDate = DateTime.Now;
+                        //skillRepository.UpdateRange(skill);
+                        //skillRepository.InsertOrUpdate(skill);
+                        skillRepository.Delete(skill);
 
-                        skillRepository.Update(skill);
+                        var skill2 = new Skill
+                        {
+                            Name = "New Skill Test InsertOrUpdate",
+                            MaximumLevel = 3
+                        };
 
-                        //var habitatGenericRepository = unitOfWork.GenericRepository<Habitat>();
-                        ////var habitatQuery = habitatGenericRepository.FirstOrDefault(t => t.Name == "AncientForest");
-                        //habitatGenericRepository.Update(new Habitat
+                        //skillRepository.Insert(skill2);
+                        skillRepository.InsertOrUpdate(skill2);
+
+                        //using (var habitatGenericRepository = unitOfWork.GenericRepository<Habitat>())
                         //{
-                        //    Id = HabitatEnum.AncientForest,
-                        //    Name = "AncientForest",
-                        //    ModifiedDate = new DateTime(2020, 1, 20)
-                        //});
+                        //    var habitatQuery = habitatGenericRepository.FirstOrDefault(t => t.Name == "AncientForest");
+                        //    habitatGenericRepository.UpdateRange(new Habitat
+                        //    {
+                        //        Id = HabitatEnum.AncientForest,
+                        //        Name = "AncientForest",
+                        //        ModifiedDate = new DateTime(2020, 1, 20)
+                        //    });
+                        //}
 
                         //var collection = personCollection.ToList();
                         //foreach (var person in collection)
@@ -400,17 +441,17 @@ namespace MHWToolNetConsole
                         //var updated = collection.Find(p => p.PersonId == 1);
                         //if (updated != null) updated.City = "City 1 Updated";
 
-                        //personGenericRepository.Update(collection);
+                        //personGenericRepository.UpdateRange(collection);
                         ////var singleOrDefault = collection.SingleOrDefault(p => p.Name.IndexOf("andri", StringComparison.OrdinalIgnoreCase) >= 0);
                         ////personRepository.Delete(singleOrDefault);
 
-                        personGenericRepository?.Insert(new Person
-                        {
-                            Name = "Person One Name",
-                            AddressLine = "Person One St",
-                            City = "City",
-                            ZipCode = "12345"
-                        });
+                        //personGenericRepository?.Insert(new Person
+                        //{
+                        //    Name = "Person One Name",
+                        //    AddressLine = "Person One St",
+                        //    City = "City",
+                        //    ZipCode = "12345"
+                        //});
 
                         //var enumerable = skillCollection.ToList();
                         //foreach (var skill in enumerable)
@@ -419,7 +460,7 @@ namespace MHWToolNetConsole
                         //    skill.SetModifiedDate(DateTime.Now);
                         //}
 
-                        //skillGenericRepository?.Update(enumerable);
+                        //skillGenericRepository?.UpdateRange(enumerable);
 
                         unitOfWork.CreateTransaction();
                         var returnValue = unitOfWork.Save();

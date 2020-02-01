@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Core.Objects;
+using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Migrations;
 using System.Data.Entity.Validation;
 using System.Linq;
@@ -36,9 +38,8 @@ namespace Mhw.Repository
             _isDisposed = true;
         }
 
-        public virtual IEnumerable<TEntity> GetAll(bool trackChanges = true) => trackChanges
-            ? Entities.ToList()
-            : EntitiesAsNoTracking.ToList();
+        public virtual IEnumerable<TEntity> GetAll(bool trackChanges = true) =>
+            trackChanges ? Entities.ToList() : EntitiesAsNoTracking.ToList();
 
         public virtual TEntity GetById(object id) => Entities.Find(id);
 
@@ -176,6 +177,13 @@ namespace Mhw.Repository
             {
                 if (isDetached)
                 {
+                    var storeEntity = Context.Set<TEntity>().Find(GetPrimaryKeyValues(entity).ToArray());
+
+                    if (storeEntity != null)
+                    {
+                        Context.Entry(storeEntity).State = EntityState.Detached;
+                    }
+
                     Context.Set<TEntity>().Attach(entity);
                 }
             }
@@ -185,6 +193,26 @@ namespace Mhw.Repository
             }
 
             return isDetached;
+        }
+
+        private IEnumerable<string> GetPrimaryKeyNames()
+        {
+            var objectContext = ((IObjectContextAdapter) Context).ObjectContext;
+            var objectSet = objectContext.CreateObjectSet<TEntity>();
+            var primaryKeyNames = objectSet.EntitySet.ElementType.KeyMembers.Select(t => t.Name);
+
+            return primaryKeyNames;
+        }
+
+        private IEnumerable<object> GetPrimaryKeyValues(TEntity entity)
+        {
+            var primaryKeyNames = new HashSet<string>(GetPrimaryKeyNames());
+            var primaryKeyValues = entity.GetType()
+                .GetProperties()
+                .Where(propertyInfo => primaryKeyNames.Contains(propertyInfo.Name))
+                .Select(propertyInfo => propertyInfo.GetValue(entity));
+
+            return primaryKeyValues;
         }
 
         public void UpdateRange(IEnumerable<TEntity> entities)
@@ -221,7 +249,17 @@ namespace Mhw.Repository
             }
         }
 
-        protected virtual void SetEntryDeleted(TEntity entity) => Context.Entry(entity).State = EntityState.Deleted;
+        protected virtual void SetEntryDeleted(TEntity entity)
+        {
+            try
+            {
+                Context.Entry(entity).State = EntityState.Deleted;
+            }
+            catch (Exception e)
+            {
+                ThrowException(e, e.Message);
+            }
+        }
 
         public virtual void Delete(TEntity entity)
         {

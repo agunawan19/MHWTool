@@ -395,6 +395,7 @@ namespace MHWToolNetConsole
                     //using (var personGenericRepository = new GenericRepository<Person>(unitOfWork))
                     //using (var skillGenericRepository = new GenericRepository<Skill>(unitOfWork))
                     using (var skillLevelGenericRepository = new GenericRepository<SkillLevel>(unitOfWork))
+                    using (var habitatGenericRepository = unitOfWork.GenericRepository<Habitat>())
                     {
                         //var habitatGenericRepository = unitOfWork.GenericRepository<Habitat>();
                         //var personCollection = personGenericRepository.GetAll();
@@ -418,16 +419,24 @@ namespace MHWToolNetConsole
                         //skillRepository.Insert(skill2);
                         skillRepository.InsertOrUpdate(skill2);
 
-                        //using (var habitatGenericRepository = unitOfWork.GenericRepository<Habitat>())
+
+                        //var habitatQuery = habitatGenericRepository.FirstOrDefault(t => t.Name == "AncientForest");
+                        //if (habitatQuery != null)
                         //{
-                        //    var habitatQuery = habitatGenericRepository.FirstOrDefault(t => t.Name == "AncientForest");
-                        //    habitatGenericRepository.UpdateRange(new Habitat
-                        //    {
-                        //        Id = HabitatEnum.AncientForest,
-                        //        Name = "AncientForest",
-                        //        ModifiedDate = new DateTime(2020, 1, 20)
-                        //    });
+                        //    habitatQuery.SetModifiedDate(DateTime.Now);
+                        //    habitatGenericRepository.Update(habitatQuery);
                         //}
+                        //var query = from habitat in habitatGenericRepository.Table
+                        //    join tt in skillLevelGenericRepository.Table on (int)habitat.Id equals tt.Id
+                        //    where habitat.Id == HabitatEnum.AncientForest
+                        //    select habitat;
+
+                            habitatGenericRepository.Update(new Habitat
+                            {
+                                Id = HabitatEnum.AncientForest,
+                                Name = "AncientForest",
+                                ModifiedDate = new DateTime(2020, 1, 20)
+                            });
 
                         //var collection = personCollection.ToList();
                         //foreach (var person in collection)

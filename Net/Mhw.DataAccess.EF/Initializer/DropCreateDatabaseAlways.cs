@@ -1,4 +1,5 @@
 ﻿using System.Data.Entity;
+using Mhw.DataAccess;
 
 namespace Mhw.DataAccess.Initializer
 {

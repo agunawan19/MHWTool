@@ -2,7 +2,6 @@
 using System.Data.Entity;
 using System.Linq;
 using Mhw.Library.Models;
-using Mhw.DataAccess;
 
 namespace Mhw.DataAccess
 {

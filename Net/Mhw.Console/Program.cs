@@ -9,6 +9,7 @@ using System.Security;
 using System.Text;
 using System.Threading.Tasks;
 using DoFactory.GangOfFour.Visitor.RealWorld.Domains;
+
 using Mhw.DataAccess;
 using Mhw.Library.Enumerations;
 using Mhw.Library.Models;
@@ -16,7 +17,6 @@ using Serilog;
 using Employee = Mhw.Library.Models.Employee;
 using EarningTaxationWithVisitorPattern;
 using Mhw.Repository;
-using System.Data.Entity;
 
 namespace MHWToolNetConsole
 {
@@ -24,13 +24,6 @@ namespace MHWToolNetConsole
     {
         private static void Main()
         {
-            //using (var mhwContext = new MhwContext2())
-            //{
-            //    var record = mhwContext.Skills.Find(1);
-            //    record.ModifiedDate = DateTime.Now;
-            //    mhwContext.SaveChanges();
-            //}
-
             //SampleOfUsingNoTracking();
 
             //GenerateReport();
@@ -61,17 +54,6 @@ namespace MHWToolNetConsole
             Log.CloseAndFlush();
             Console.ReadKey();
 
-            var repository = new MhwRepository();
-
-            var singleResult2 = repository.GetPersons();
-            var singleResult1 = repository.GetMaterial(1);
-
-            var result = repository.GetMaterials();
-
-            var result2 = repository.GetSkills();
-
-            var result3 = repository.GetMaterialTypes();
-
             Console.ReadLine();
 
             //var armorSets = GetArmorSetList();
@@ -95,6 +77,20 @@ namespace MHWToolNetConsole
             //armors
             //    .Where(armor => armor.Name.Contains(" Arms")).ToList()
             //    .ForEach(armor => Console.WriteLine(armor.Name));
+        }
+
+        private static void OldRepositoryTest()
+        {
+            //var repository = new MhwRepository();
+
+            //var singleResult2 = repository.GetPersons();
+            //var singleResult1 = repository.GetMaterial(1);
+
+            //var result = repository.GetMaterials();
+
+            //var result2 = repository.GetSkills();
+
+            //var result3 = repository.GetMaterialTypes();
         }
 
         private static void SampleOfUsingNoTracking()
@@ -419,7 +415,6 @@ namespace MHWToolNetConsole
                         //skillRepository.Insert(skill2);
                         skillRepository.InsertOrUpdate(skill2);
 
-
                         //var habitatQuery = habitatGenericRepository.FirstOrDefault(t => t.Name == "AncientForest");
                         //if (habitatQuery != null)
                         //{
@@ -431,12 +426,12 @@ namespace MHWToolNetConsole
                         //    where habitat.Id == HabitatEnum.AncientForest
                         //    select habitat;
 
-                            habitatGenericRepository.Update(new Habitat
-                            {
-                                Id = HabitatEnum.AncientForest,
-                                Name = "AncientForest",
-                                ModifiedDate = new DateTime(2020, 1, 20)
-                            });
+                        habitatGenericRepository.Update(new Habitat
+                        {
+                            Id = HabitatEnum.AncientForest,
+                            Name = "AncientForest",
+                            ModifiedDate = new DateTime(2020, 1, 20)
+                        });
 
                         //var collection = personCollection.ToList();
                         //foreach (var person in collection)
@@ -484,6 +479,8 @@ namespace MHWToolNetConsole
                     throw;
                 }
             }
+
+            Console.ReadLine();
         }
 
         private static void ProcessProperties(Person person)

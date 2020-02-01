@@ -7,7 +7,6 @@ using System.Data.Entity.Migrations;
 using System.Data.Entity.Validation;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
 using Mhw.DataAccess;
 
 namespace Mhw.Repository
@@ -72,7 +71,7 @@ namespace Mhw.Repository
             }
             catch (DbEntityValidationException exception)
             {
-                ThrowException(exception, GetEntityValidationErrorMessage(exception));
+                throw new Exception(exception.GetEntityValidationErrorMessage(), exception);
             }
         }
 
@@ -94,7 +93,7 @@ namespace Mhw.Repository
             }
             catch (DbEntityValidationException exception)
             {
-                ThrowException(exception, GetEntityValidationErrorMessage(exception));
+                throw new Exception(exception.GetEntityValidationErrorMessage(), exception);
             }
         }
 
@@ -118,7 +117,7 @@ namespace Mhw.Repository
             }
             catch (DbEntityValidationException exception)
             {
-                ThrowException(exception, GetEntityValidationErrorMessage(exception));
+                throw new Exception(exception.GetEntityValidationErrorMessage(), exception);
             }
         }
 
@@ -140,7 +139,7 @@ namespace Mhw.Repository
             }
             catch (DbEntityValidationException exception)
             {
-                ThrowException(exception, GetEntityValidationErrorMessage(exception));
+                throw new Exception(exception.GetEntityValidationErrorMessage(), exception);
             }
         }
 
@@ -155,7 +154,7 @@ namespace Mhw.Repository
                         Context = new MhwContext();
                     }
 
-                    AttachEntity(entity);
+                    Attach(entity);
                     SetEntryModified(entity);
                 }
                 else
@@ -165,11 +164,11 @@ namespace Mhw.Repository
             }
             catch (DbEntityValidationException exception)
             {
-                ThrowException(exception, GetEntityValidationErrorMessage(exception));
+                throw new Exception(exception.GetEntityValidationErrorMessage(), exception);
             }
         }
 
-        private bool AttachEntity(TEntity entity)
+        private bool Attach(TEntity entity)
         {
             var isDetached = Context.Entry(entity).State == EntityState.Detached;
 
@@ -177,27 +176,31 @@ namespace Mhw.Repository
             {
                 if (isDetached)
                 {
-                    var storeEntity = Context.Set<TEntity>().Find(GetPrimaryKeyValues(entity).ToArray());
-
-                    if (storeEntity != null)
-                    {
-                        Context.Entry(storeEntity).State = EntityState.Detached;
-                    }
-
+                    SetExistingEntryDetached(entity);
                     Context.Set<TEntity>().Attach(entity);
                 }
             }
-            catch (Exception e)
+            catch (Exception exception)
             {
-                ThrowException(e, e.Message);
+                throw new Exception(exception.Message, exception);
             }
 
             return isDetached;
         }
 
+        private void SetExistingEntryDetached(TEntity entity)
+        {
+            var storeEntity = Context.Set<TEntity>().Find(GetPrimaryKeyValues(entity).ToArray());
+
+            if (storeEntity != null)
+            {
+                Context.Entry(storeEntity).State = EntityState.Detached;
+            }
+        }
+
         private IEnumerable<string> GetPrimaryKeyNames()
         {
-            var objectContext = ((IObjectContextAdapter) Context).ObjectContext;
+            var objectContext = ((IObjectContextAdapter)Context).ObjectContext;
             var objectSet = objectContext.CreateObjectSet<TEntity>();
             var primaryKeyNames = objectSet.EntitySet.ElementType.KeyMembers.Select(t => t.Name);
 
@@ -233,7 +236,7 @@ namespace Mhw.Repository
             }
             catch (DbEntityValidationException exception)
             {
-                ThrowException(exception, GetEntityValidationErrorMessage(exception));
+                throw new Exception(exception.GetEntityValidationErrorMessage(), exception);
             }
         }
 
@@ -243,9 +246,9 @@ namespace Mhw.Repository
             {
                 Context.Entry(entity).State = EntityState.Modified;
             }
-            catch (Exception e)
+            catch (Exception exception)
             {
-                ThrowException(e, e.Message);
+                throw new Exception(exception.Message, exception);
             }
         }
 
@@ -257,7 +260,7 @@ namespace Mhw.Repository
             }
             catch (Exception e)
             {
-                ThrowException(e, e.Message);
+                throw new Exception(e.Message, e);
             }
         }
 
@@ -272,7 +275,7 @@ namespace Mhw.Repository
                         Context = new MhwContext();
                     }
 
-                    AttachEntity(entity);
+                    Attach(entity);
                     Entities.Remove(entity);
                 }
                 else
@@ -282,7 +285,7 @@ namespace Mhw.Repository
             }
             catch (DbEntityValidationException exception)
             {
-                ThrowException(exception, GetEntityValidationErrorMessage(exception));
+                throw new Exception(exception.GetEntityValidationErrorMessage(), exception);
             }
         }
 
@@ -304,33 +307,7 @@ namespace Mhw.Repository
             }
             catch (DbEntityValidationException exception)
             {
-                ThrowException(exception, GetEntityValidationErrorMessage(exception));
-            }
-        }
-
-        private void ThrowException(Exception exception, string errorMessage)
-        {
-            throw new Exception(errorMessage, exception);
-        }
-
-        private string GetEntityValidationErrorMessage(DbEntityValidationException exception)
-        {
-            var errorMessage = new StringBuilder();
-
-            foreach (var validationErrors in exception.EntityValidationErrors)
-            {
-                GetValidationErrorMessage(validationErrors, errorMessage);
-            }
-
-            return errorMessage.ToString();
-        }
-
-        private void GetValidationErrorMessage(DbEntityValidationResult validationErrors, StringBuilder errorMessage)
-        {
-            foreach (var validationError in validationErrors.ValidationErrors)
-            {
-                errorMessage.Append($"Property: {validationError.PropertyName} Error: {validationError.ErrorMessage}")
-                    .AppendLine();
+                throw new Exception(exception.GetEntityValidationErrorMessage(), exception);
             }
         }
     }

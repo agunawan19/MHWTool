@@ -43,20 +43,9 @@ namespace Mhw.Repository
             {
                 returnValue = Context.SaveChanges();
             }
-            catch (DbEntityValidationException dbEx)
+            catch (DbEntityValidationException exception)
             {
-                foreach (var validationErrors in dbEx.EntityValidationErrors)
-                {
-                    foreach (var validationError in validationErrors.ValidationErrors)
-                    {
-                        _errorMessage.AppendFormat("Property: {0} Error: {1}",
-                                validationError.PropertyName,
-                                validationError.ErrorMessage)
-                            .AppendLine();
-                    }
-                }
-
-                throw new Exception(_errorMessage.ToString(), dbEx);
+                throw new Exception(exception.GetEntityValidationErrorMessage(), exception);
             }
 
             return returnValue;

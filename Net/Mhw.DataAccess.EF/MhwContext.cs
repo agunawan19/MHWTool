@@ -4,7 +4,7 @@ using System.Data.Entity.Migrations;
 using System.Linq;
 using Mhw.DataAccess.Initializer;
 using Mhw.DataAccess.Migrations;
-using Mhw.Library.Models;
+using Mhw.Domain.Entities;
 
 namespace Mhw.DataAccess
 {

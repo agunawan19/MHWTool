@@ -7,8 +7,8 @@ using System.Linq;
 using System.Linq.Expressions;
 using Mhw.DataAccess;
 using Mhw.DataAccess.MigrationCodeGenerator;
-using Mhw.Library.Enumerations;
-using Mhw.Library.Models;
+using Mhw.Domain.Enumerations;
+using Mhw.Domain.Entities;
 
 namespace Mhw.DataAccess.Migrations
 {

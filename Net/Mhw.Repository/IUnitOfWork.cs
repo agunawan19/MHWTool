@@ -5,7 +5,7 @@ using Mhw.DataAccess;
 
 namespace Mhw.Repository
 {
-    public interface IUnitOfWork<out TContext> : IDisposable where TContext : DbContext, new()
+    public interface IUnitOfWork2<out TContext> : IDisposable where TContext : DbContext, new()
     {
         TContext Context { get; }
 

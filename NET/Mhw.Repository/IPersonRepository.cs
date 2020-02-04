@@ -1,6 +1,6 @@
-﻿using Mhw.Library;
-using Mhw.Library.Models;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using AG.Common.Interfaces;
+using Mhw.Domain.Entities;
 
 namespace Mhw.Repository
 {

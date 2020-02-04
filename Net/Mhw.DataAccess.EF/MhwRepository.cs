@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using Mhw.Library.Models;
+using Mhw.Domain.Entities;
 
 namespace Mhw.DataAccess
 {

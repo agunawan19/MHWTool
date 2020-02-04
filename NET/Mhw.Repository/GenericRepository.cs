@@ -7,6 +7,7 @@ using System.Data.Entity.Migrations;
 using System.Data.Entity.Validation;
 using System.Linq;
 using System.Linq.Expressions;
+using AG.Common.Interfaces;
 using Mhw.DataAccess;
 
 namespace Mhw.Repository

@@ -71,13 +71,17 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\AG\Common\AG.Common.Interfaces\AG.Common.Interfaces.csproj">
+      <Project>{11ea9fbf-bd8c-4960-a706-b70f95fd966f}</Project>
+      <Name>AG.Common.Interfaces</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Mhw.DataAccess.EF\Mhw.DataAccess.EF.csproj">
       <Project>{1629F8BA-2174-4AB1-A0FF-E93754D12FF2}</Project>
       <Name>Mhw.DataAccess.EF</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Mhw.Library\Mhw.Library.csproj">
+    <ProjectReference Include="..\Mhw.Domain\Mhw.Domain.csproj">
       <Project>{0c9d4e2d-68d0-4306-9ec4-b6cd543fae2c}</Project>
-      <Name>Mhw.Library</Name>
+      <Name>Mhw.Domain</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

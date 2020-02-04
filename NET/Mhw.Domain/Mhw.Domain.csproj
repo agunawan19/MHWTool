@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{0C9D4E2D-68D0-4306-9EC4-B6CD543FAE2C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Mhw.Domain</RootNamespace>
+    <AssemblyName>Mhw.Domain</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Enumerations\MonsterClass.cs" />
+    <Compile Include="Enumerations\HabitatEnum.cs" />
+    <Compile Include="Enumerations\Rank.cs" />
+    <Compile Include="Enumerations\MonsterSize.cs" />
+    <Compile Include="Enumerations\MaterialTypeEnum.cs" />
+    <Compile Include="Entities\Employee.cs" />
+    <Compile Include="Entities\EntityBase.cs" />
+    <Compile Include="Entities\Habitat.cs" />
+    <Compile Include="Entities\ArmorBase.cs" />
+    <Compile Include="ArmorFactory.cs" />
+    <Compile Include="Entities\ArmorSet.cs" />
+    <Compile Include="Entities\ArmorSetBonusSkill.cs" />
+    <Compile Include="Entities\Bones.cs" />
+    <Compile Include="Entities\Carving.cs" />
+    <Compile Include="Entities\DecorationSlot.cs" />
+    <Compile Include="Entities\Chest.cs" />
+    <Compile Include="Entities\IEmployee.cs" />
+    <Compile Include="Entities\IEntityBase.cs" />
+    <Compile Include="Entities\IHabitat.cs" />
+    <Compile Include="Entities\ICarving.cs" />
+    <Compile Include="Entities\IMaterialType.cs" />
+    <Compile Include="Entities\IMonster.cs" />
+    <Compile Include="Entities\IMonsterAilmentWeakness.cs" />
+    <Compile Include="Entities\IMonsterBase.cs" />
+    <Compile Include="Entities\IMonsterClass.cs" />
+    <Compile Include="Entities\IMonsterElementalWeakness.cs" />
+    <Compile Include="Entities\IMonsterElementalWeaknessDetail.cs" />
+    <Compile Include="Entities\IMonsterPhysiology.cs" />
+    <Compile Include="Entities\IMonsterSize.cs" />
+    <Compile Include="Entities\Material.cs" />
+    <Compile Include="Entities\MaterialType.cs" />
+    <Compile Include="Entities\Mining.cs" />
+    <Compile Include="Entities\MonsterAilmentWeakness.cs" />
+    <Compile Include="Entities\MonsterBase.cs" />
+    <Compile Include="Entities\MonsterClass.cs" />
+    <Compile Include="Entities\MonsterElementalWeakness.cs" />
+    <Compile Include="Entities\MonsterElementalWeaknessDetail.cs" />
+    <Compile Include="Entities\MonsterPhysiology.cs" />
+    <Compile Include="Entities\Person.cs" />
+    <Compile Include="Entities\SkillLevel.cs" />
+    <Compile Include="Entities\Waist.cs" />
+    <Compile Include="Entities\Leg.cs" />
+    <Compile Include="Entities\Arm.cs" />
+    <Compile Include="Entities\Head.cs" />
+    <Compile Include="Entities\IArmor.cs" />
+    <Compile Include="Entities\IArmorSet.cs" />
+    <Compile Include="Entities\IArmorSetBonusSkill.cs" />
+    <Compile Include="Entities\IDecoration.cs" />
+    <Compile Include="Entities\IMaterial.cs" />
+    <Compile Include="Entities\IRankInfo.cs" />
+    <Compile Include="Entities\IArmorElementalResistance.cs" />
+    <Compile Include="Entities\ISkill.cs" />
+    <Compile Include="Entities\ISkillLevel.cs" />
+    <Compile Include="Entities\Monster.cs" />
+    <Compile Include="Entities\RankInfo.cs" />
+    <Compile Include="Entities\ArmorElementalResistance.cs" />
+    <Compile Include="Entities\MonsterSize.cs" />
+    <Compile Include="Entities\Skill.cs" />
+    <Compile Include="Enumerations\ArmorPiece.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="DTO\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

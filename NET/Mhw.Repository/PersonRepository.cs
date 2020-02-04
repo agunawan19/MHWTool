@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using AG.Common.Interfaces;
 using Mhw.DataAccess;
-using Mhw.Library.Models;
+using Mhw.Domain.Entities;
 
 namespace Mhw.Repository
 {

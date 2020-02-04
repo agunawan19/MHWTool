@@ -8,13 +8,14 @@ using System.Runtime.CompilerServices;
 using System.Security;
 using System.Text;
 using System.Threading.Tasks;
+using AG.Common.Interfaces;
 using DoFactory.GangOfFour.Visitor.RealWorld.Domains;
 
 using Mhw.DataAccess;
-using Mhw.Library.Enumerations;
-using Mhw.Library.Models;
+using Mhw.Domain.Enumerations;
+using Mhw.Domain.Entities;
 using Serilog;
-using Employee = Mhw.Library.Models.Employee;
+using Employee = Mhw.Domain.Entities.Employee;
 using EarningTaxationWithVisitorPattern;
 using Mhw.Repository;
 
@@ -475,7 +476,8 @@ namespace MHWToolNetConsole
                 catch (Exception e)
                 {
                     unitOfWork.Rollback();
-                    Console.WriteLine(e);
+                    Console.WriteLine(e.Message);
+                    Console.ReadLine();
                     throw;
                 }
             }

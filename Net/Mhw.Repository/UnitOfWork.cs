@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Validation;
 using System.Text;
+using AG.Common.Interfaces;
 
 namespace Mhw.Repository
 {
@@ -13,12 +14,12 @@ namespace Mhw.Repository
         private DbContextTransaction _transaction;
         private Dictionary<string, object> _repositories;
 
+        public TContext Context { get; }
+
         public UnitOfWork()
         {
             Context = new TContext();
         }
-
-        public TContext Context { get; }
 
         public void CreateTransaction()
         {

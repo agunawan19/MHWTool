@@ -88,6 +88,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\AG\Common\AG.Common.Interfaces\AG.Common.Interfaces.csproj">
+      <Project>{11EA9FBF-BD8C-4960-A706-B70F95FD966F}</Project>
+      <Name>AG.Common.Interfaces</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DoFactory.GangOfFour.Visitor.RealWorld\DoFactory.GangOfFour.Visitor.RealWorld.csproj">
       <Project>{771e19c3-f53f-444c-93d2-973b34e19f22}</Project>
       <Name>DoFactory.GangOfFour.Visitor.RealWorld</Name>
@@ -100,9 +104,9 @@
       <Project>{1629f8ba-2174-4ab1-a0ff-e93754d12ff2}</Project>
       <Name>Mhw.DataAccess.EF</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Mhw.Library\Mhw.Library.csproj">
+    <ProjectReference Include="..\Mhw.Domain\Mhw.Domain.csproj">
       <Project>{0c9d4e2d-68d0-4306-9ec4-b6cd543fae2c}</Project>
-      <Name>Mhw.Library</Name>
+      <Name>Mhw.Domain</Name>
     </ProjectReference>
     <ProjectReference Include="..\Mhw.Repository\Mhw.Repository.csproj">
       <Project>{a38f7083-7928-4f07-8c14-50390aaa9b5d}</Project>

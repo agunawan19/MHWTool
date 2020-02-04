@@ -1,6 +1,6 @@
 ﻿using System.Data.Entity.ModelConfiguration;
 using JetBrains.Annotations;
-using Mhw.Library.Models;
+using Mhw.Domain.Entities;
 
 namespace Mhw.DataAccess.EntityConfigurations
 {

@@ -1,7 +1,5 @@
-﻿using System;
-using System.Data.Entity;
-using System.Linq;
-using Mhw.DataAccess.Initializer;
+﻿using System.Data.Entity;
+using System.Data.Entity.ModelConfiguration.Conventions;
 using Mhw.DataAccess.Migrations;
 using Mhw.Domain.Entities;
 
@@ -20,7 +18,7 @@ namespace Mhw.DataAccess
 
         public virtual DbSet<MaterialType> MaterialTypes => Set<MaterialType>();
 
-        public MhwMigrationContext() : base("MHWDb")
+        public MhwMigrationContext() : base("MHWDbContext")
         {
             //Database.SetInitializer(new MigrateDatabaseToLatestVersion<MhwDevelopmentContext, Configuration>());
             //Database.SetInitializer(new MHWDbInitializer());
@@ -39,6 +37,7 @@ namespace Mhw.DataAccess
             var assembly = GetType().Assembly;
             modelBuilder.Configurations.AddFromAssembly(assembly);
             modelBuilder.Conventions.AddFromAssembly(assembly);
+            modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
         }
 
         //public override int SaveChanges()

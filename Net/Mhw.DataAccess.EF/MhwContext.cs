@@ -1,10 +1,5 @@
-﻿using System;
-using System.Data.Entity;
-using System.Data.Entity.Migrations;
-using System.Linq;
-using Mhw.DataAccess.Initializer;
-using Mhw.DataAccess.Migrations;
-using Mhw.Domain.Entities;
+﻿using System.Data.Entity;
+using System.Data.Entity.ModelConfiguration.Conventions;
 
 namespace Mhw.DataAccess
 {
@@ -30,7 +25,7 @@ namespace Mhw.DataAccess
             Database.SetInitializer<MhwContext>(null);
         }
 
-        internal MhwContext(string connectionString) : base(connectionString)
+        public MhwContext(string connectionString) : base(connectionString)
         {
             //Database.SetInitializer(new MHWDbInitializer());
             //Database.SetInitializer(new MigrateDatabaseToLatestVersion<MhwDevelopmentContext, Configuration>());
@@ -49,6 +44,7 @@ namespace Mhw.DataAccess
         {
             var assembly = GetType().Assembly;
             modelBuilder.Configurations.AddFromAssembly(assembly);
+            modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
         }
 
         //public override int SaveChanges()

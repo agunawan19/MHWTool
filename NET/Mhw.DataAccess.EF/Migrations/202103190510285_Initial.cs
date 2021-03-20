@@ -10,7 +10,7 @@
         public override void Up()
         {
             CreateTable(
-                "dbo.Habitats",
+                "dbo.Habitat",
                 c => new
                     {
                         Id = c.Int(nullable: false),
@@ -42,7 +42,7 @@
                 .PrimaryKey(t => t.Id);
             
             CreateTable(
-                "dbo.Materials",
+                "dbo.Material",
                 c => new
                     {
                         Id = c.Short(nullable: false, identity: true),
@@ -74,11 +74,11 @@
                             }),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.MaterialTypes", t => t.TypeId, cascadeDelete: true)
+                .ForeignKey("dbo.MaterialType", t => t.TypeId, cascadeDelete: true)
                 .Index(t => t.TypeId);
             
             CreateTable(
-                "dbo.MaterialTypes",
+                "dbo.MaterialType",
                 c => new
                     {
                         Id = c.Int(nullable: false),
@@ -126,7 +126,7 @@
                 .PrimaryKey(t => t.PersonId);
             
             CreateTable(
-                "dbo.SkillLevels",
+                "dbo.SkillLevel",
                 c => new
                     {
                         Id = c.Short(nullable: false, identity: true),
@@ -166,11 +166,11 @@
                             }),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Skills", t => t.SkillId, cascadeDelete: true)
+                .ForeignKey("dbo.Skill", t => t.SkillId, cascadeDelete: true)
                 .Index(t => t.SkillId);
             
             CreateTable(
-                "dbo.Skills",
+                "dbo.Skill",
                 c => new
                     {
                         Id = c.Short(nullable: false, identity: true),
@@ -264,11 +264,11 @@
         public override void Down()
         {
             DropForeignKey("dbo.PersonDetails", "ProprietorId", "dbo.People");
-            DropForeignKey("dbo.SkillLevels", "SkillId", "dbo.Skills");
-            DropForeignKey("dbo.Materials", "TypeId", "dbo.MaterialTypes");
+            DropForeignKey("dbo.SkillLevel", "SkillId", "dbo.Skill");
+            DropForeignKey("dbo.Material", "TypeId", "dbo.MaterialType");
             DropIndex("dbo.PersonDetails", new[] { "ProprietorId" });
-            DropIndex("dbo.SkillLevels", new[] { "SkillId" });
-            DropIndex("dbo.Materials", new[] { "TypeId" });
+            DropIndex("dbo.SkillLevel", new[] { "SkillId" });
+            DropIndex("dbo.Material", new[] { "TypeId" });
             DropTable("dbo.PersonDetails",
                 removedColumnAnnotations: new Dictionary<string, IDictionary<string, object>>
                 {
@@ -308,7 +308,7 @@
                         }
                     },
                 });
-            DropTable("dbo.Skills",
+            DropTable("dbo.Skill",
                 removedColumnAnnotations: new Dictionary<string, IDictionary<string, object>>
                 {
                     {
@@ -340,7 +340,7 @@
                         }
                     },
                 });
-            DropTable("dbo.SkillLevels",
+            DropTable("dbo.SkillLevel",
                 removedColumnAnnotations: new Dictionary<string, IDictionary<string, object>>
                 {
                     {
@@ -383,7 +383,7 @@
                         }
                     },
                 });
-            DropTable("dbo.MaterialTypes",
+            DropTable("dbo.MaterialType",
                 removedColumnAnnotations: new Dictionary<string, IDictionary<string, object>>
                 {
                     {
@@ -408,7 +408,7 @@
                         }
                     },
                 });
-            DropTable("dbo.Materials",
+            DropTable("dbo.Material",
                 removedColumnAnnotations: new Dictionary<string, IDictionary<string, object>>
                 {
                     {
@@ -433,7 +433,7 @@
                         }
                     },
                 });
-            DropTable("dbo.Habitats",
+            DropTable("dbo.Habitat",
                 removedColumnAnnotations: new Dictionary<string, IDictionary<string, object>>
                 {
                     {

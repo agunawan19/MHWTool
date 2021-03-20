@@ -25,7 +25,7 @@ namespace MHWToolNetConsole
     {
         private static void Main()
         {
-            //SampleOfUsingNoTracking();
+            SampleOfUsingNoTracking();
 
             //GenerateReport();
             GenericRepositoryTest();
@@ -96,7 +96,7 @@ namespace MHWToolNetConsole
 
         private static void SampleOfUsingNoTracking()
         {
-            using (var context = new MhwContext())
+            using (var context = new MhwContext("MHWDbContext"))
             {
                 var skills = context.Skills.AsNoTracking().ToList();
                 var skill = skills.First();
@@ -106,12 +106,11 @@ namespace MHWToolNetConsole
 
                 var skill2 = new Skill
                 {
-                    Name = "New Skill 2",
-                    MaximumLevel = 2
+                    Name = "New Skill 3",
+                    MaximumLevel = 3
                 };
 
                 context.Skills.Add(skill2);
-
                 context.SaveChanges();
             }
         }

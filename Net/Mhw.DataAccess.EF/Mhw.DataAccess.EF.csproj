@@ -43,9 +43,9 @@
     <Compile Include="EntityConfigurations\HabitatConfiguration.cs" />
     <Compile Include="EntityConfigurations\SkillLevelConfiguration.cs" />
     <Compile Include="EntityConfigurations\SkillConfiguration.cs" />
-    <Compile Include="Migrations\202002010608494_Initial.cs" />
-    <Compile Include="Migrations\202002010608494_Initial.designer.cs">
-      <DependentUpon>202002010608494_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\202103190510285_Initial.cs" />
+    <Compile Include="Migrations\202103190510285_Initial.designer.cs">
+      <DependentUpon>202103190510285_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MhwMigrationContext.cs" />
@@ -58,6 +58,7 @@
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="ConnectionStrings.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -74,15 +75,15 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202002010608494_Initial.resx">
-      <DependentUpon>202002010608494_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Mhw.Domain\Mhw.Domain.csproj">
       <Project>{0c9d4e2d-68d0-4306-9ec4-b6cd543fae2c}</Project>
       <Name>Mhw.Domain</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202103190510285_Initial.resx">
+      <DependentUpon>202103190510285_Initial.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

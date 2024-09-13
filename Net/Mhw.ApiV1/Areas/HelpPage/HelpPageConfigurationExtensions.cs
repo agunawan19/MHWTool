@@ -13,7 +13,6 @@ using System.Web.Http.Controllers;
 using System.Web.Http.Description;
 using Mhw.ApiV1.Areas.HelpPage.ModelDescriptions;
 using Mhw.ApiV1.Areas.HelpPage.Models;
-using Mhw.ApiV1.Areas.HelpPage.SampleGeneration;
 
 namespace Mhw.ApiV1.Areas.HelpPage
 {
@@ -283,7 +282,7 @@ namespace Mhw.ApiV1.Areas.HelpPage
                     //     public int Y { get; set; }
                     // }
                     // Class Point is bindable with a TypeConverter, so Point will be added to UriParameters collection.
-                    //
+                    // 
                     // public class Point
                     // {
                     //     public int X { get; set; }

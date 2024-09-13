@@ -1,4 +1,4 @@
-namespace Mhw.ApiV1.Areas.HelpPage.SampleGeneration
+namespace Mhw.ApiV1.Areas.HelpPage
 {
     /// <summary>
     /// Indicates whether the sample is used for request or response
